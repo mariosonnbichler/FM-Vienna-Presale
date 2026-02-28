@@ -1,0 +1,18 @@
+{
+  "name": "FM Vienna Presale",
+  "short_name": "FM Presale",
+  "description": "Flower presale ordering system",
+  "start_url": "/FM-Vienna-Presale/",
+  "display": "standalone",
+  "background_color": "#FAF7F2",
+  "theme_color": "#2D5016",
+  "orientation": "portrait",
+  "icons": [
+    {
+      "src": "data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🌸</text></svg>",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    }
+  ]
+}
