@@ -1,0 +1,2760 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>FM Deko & Accessoires</title>
+<script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+<script>emailjs.init('0IdNsX8hneHB0wq0o');</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,wght@0,300;0,400;0,500;0,600;1,400&family=Playfair+Display:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --dark: #1A1412;
+    --green: #2D5016;
+    --green-light: #4A7C28;
+    --rose: #C17B5C;
+    --rose-light: #E8A98A;
+    --border: #D4C5B0;
+    --cream: #F5EDE3;
+    --cream-dark: #EAD9C8;
+    --text-muted: #8B7355;
+    --bg: #FDFAF7;
+  }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--bg);
+    color: var(--dark);
+    min-height: 100vh;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  /* ── LOGIN ── */
+  #loginScreen {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(145deg, #f5ede3 0%, #e8d5be 50%, #d4b896 100%);
+    padding: 24px;
+  }
+  .login-box {
+    background: #fff;
+    border-radius: 20px;
+    padding: 36px 28px;
+    width: 100%;
+    max-width: 360px;
+    box-shadow: 0 8px 40px rgba(0,0,0,0.12);
+  }
+  .login-logo { font-size: 2.2rem; text-align: center; margin-bottom: 8px; }
+  .login-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.5rem;
+    text-align: center;
+    color: var(--dark);
+    margin-bottom: 4px;
+  }
+  .login-sub { font-size: 0.82rem; color: var(--text-muted); text-align: center; margin-bottom: 28px; }
+  .login-box input {
+    width: 100%;
+    padding: 13px 16px;
+    border: 1.5px solid var(--border);
+    border-radius: 12px;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 1rem;
+    color: var(--dark);
+    background: var(--cream);
+    margin-bottom: 12px;
+    outline: none;
+    transition: border-color 0.2s;
+  }
+  .login-box input:focus { border-color: var(--green); }
+  .btn-login {
+    width: 100%;
+    padding: 14px;
+    background: var(--green);
+    color: #fff;
+    border: none;
+    border-radius: 12px;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 1rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: background 0.2s;
+  }
+  .btn-login:hover { background: var(--green-light); }
+  #loginError { color: #c44; font-size: 0.82rem; text-align: center; margin-top: 10px; display: none; }
+
+  /* ── SCREENS ── */
+  .screen { display: none; }
+  .screen.active { display: block; }
+
+  /* ── HEADER ── */
+  .app-header {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    background: rgba(253,250,247,0.95);
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid var(--border);
+    padding: 12px 16px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  .header-left { display: flex; align-items: center; gap: 10px; }
+  .header-logo { font-size: 1.3rem; }
+  .header-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 1rem;
+    color: var(--dark);
+  }
+  .header-right { display: flex; align-items: center; gap: 10px; }
+  #cartBtnDeko {
+    position: relative;
+    background: var(--cream);
+    border: 1px solid var(--border);
+    border-radius: 20px;
+    padding: 6px 14px;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.85rem;
+    cursor: pointer;
+    color: var(--dark);
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+  #cartCountDeko {
+    background: var(--rose);
+    color: #fff;
+    border-radius: 50%;
+    width: 18px;
+    height: 18px;
+    font-size: 0.72rem;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    font-weight: 600;
+  }
+  #userBadgeDeko {
+    font-size: 0.78rem;
+    color: var(--text-muted);
+  }
+
+  /* ── CATEGORIES ── */
+  .cat-screen { padding: 20px 16px 80px; }
+  .cat-screen-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.4rem;
+    margin-bottom: 6px;
+  }
+  .cat-screen-sub { font-size: 0.85rem; color: var(--text-muted); margin-bottom: 24px; }
+  .cat-grid { display: flex; flex-direction: column; gap: 12px; }
+  .cat-card {
+    background: #fff;
+    border: 1.5px solid var(--border);
+    border-radius: 16px;
+    padding: 20px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    transition: border-color 0.2s, box-shadow 0.2s;
+  }
+  .cat-card:active { transform: scale(0.98); }
+  .cat-card-left { display: flex; align-items: center; gap: 14px; }
+  .cat-icon { font-size: 1.8rem; }
+  .cat-name { font-size: 1rem; font-weight: 500; }
+  .cat-count { font-size: 0.78rem; color: var(--text-muted); margin-top: 2px; }
+  .cat-arrow { color: var(--text-muted); font-size: 1.1rem; }
+
+  /* ── PRODUCTS ── */
+  .prod-screen { padding: 0 0 100px; }
+  .prod-header {
+    padding: 16px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    border-bottom: 1px solid var(--border);
+  }
+  .btn-back {
+    background: none;
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 6px 12px;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.85rem;
+    cursor: pointer;
+    color: var(--dark);
+  }
+  .prod-header-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.1rem;
+  }
+  .prod-grid {
+    padding: 16px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+  }
+  .prod-card {
+    background: #fff;
+    border: 1.5px solid var(--border);
+    border-radius: 14px;
+    overflow: hidden;
+    cursor: default;
+    -webkit-tap-highlight-color: transparent;
+    transition: box-shadow 0.2s;
+  }
+  .prod-img {
+    width: 100%;
+    aspect-ratio: 1;
+    object-fit: cover;
+    display: block;
+    background: var(--cream);
+  }
+  .prod-img-placeholder {
+    width: 100%;
+    aspect-ratio: 1;
+    background: var(--cream);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 2rem;
+  }
+  .prod-info { padding: 10px 12px 12px; }
+  .prod-name { font-size: 0.88rem; font-weight: 500; margin-bottom: 4px; line-height: 1.3; }
+  .prod-price { font-size: 0.82rem; color: var(--green); font-weight: 500; }
+  .prod-notes { font-size: 0.75rem; color: var(--text-muted); margin-top: 3px; line-height: 1.3; }
+  .prod-qty-row { display:flex; align-items:center; justify-content:space-between; margin-top:8px; gap:6px; }
+  .prod-qty-btn { width:28px;height:28px;border-radius:50%;border:1.5px solid var(--border);background:#fff;font-size:1rem;cursor:pointer;display:flex;align-items:center;justify-content:center;color:var(--dark);flex-shrink:0;-webkit-tap-highlight-color:transparent; }
+  .prod-qty-val { font-size:0.9rem;font-weight:500;min-width:20px;text-align:center; }
+  .prod-stock-row { display:flex;align-items:center;justify-content:space-between;margin-top:5px;font-size:0.72rem;color:var(--text-muted);min-height:1.1em; }
+  .prod-total { font-size:0.72rem;color:var(--green);font-weight:500; }
+  .available-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    font-size: 0.7rem;
+    color: var(--green);
+    background: #e8f5e0;
+    border-radius: 20px;
+    padding: 2px 8px;
+    margin-top: 5px;
+  }
+
+  /* ── PRODUCT DETAIL MODAL ── */
+  .modal-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.5);
+    z-index: 200;
+    display: none;
+    align-items: flex-end;
+    justify-content: center;
+  }
+  .modal-overlay.open { display: flex; }
+  .modal-sheet {
+    background: #fff;
+    border-radius: 20px 20px 0 0;
+    width: 100%;
+    max-width: 480px;
+    max-height: 90vh;
+    overflow-y: auto;
+    padding: 0 0 40px;
+  }
+  .modal-handle {
+    width: 36px;
+    height: 4px;
+    background: var(--border);
+    border-radius: 2px;
+    margin: 12px auto 16px;
+  }
+  .modal-img {
+    width: 100%;
+    max-height: 220px;
+    object-fit: cover;
+    display: block;
+  }
+  .modal-img-placeholder {
+    width: 100%;
+    height: 160px;
+    background: var(--cream);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 3rem;
+  }
+  .modal-body { padding: 16px 20px; }
+  .modal-name {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.3rem;
+    margin-bottom: 6px;
+  }
+  .modal-price { font-size: 1rem; color: var(--green); font-weight: 500; margin-bottom: 8px; }
+  .modal-notes { font-size: 0.88rem; color: var(--text-muted); margin-bottom: 16px; line-height: 1.5; }
+  .modal-section-label {
+    font-size: 0.72rem;
+    text-transform: uppercase;
+    letter-spacing: 1.2px;
+    color: var(--text-muted);
+    margin-bottom: 8px;
+    font-weight: 500;
+  }
+  .qty-row {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 16px;
+  }
+  .qty-btn {
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    border: 1.5px solid var(--border);
+    background: #fff;
+    font-size: 1.1rem;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--dark);
+  }
+  .qty-val { font-size: 1.1rem; font-weight: 500; min-width: 28px; text-align: center; }
+  .date-input {
+    width: 100%;
+    padding: 12px 14px;
+    border: 1.5px solid var(--border);
+    border-radius: 12px;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.95rem;
+    color: var(--dark);
+    background: var(--cream);
+    margin-bottom: 16px;
+    outline: none;
+  }
+  .date-input:focus { border-color: var(--green); }
+  .notes-input {
+    width: 100%;
+    padding: 12px 14px;
+    border: 1.5px solid var(--border);
+    border-radius: 12px;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.88rem;
+    color: var(--dark);
+    background: var(--cream);
+    resize: none;
+    height: 70px;
+    margin-bottom: 16px;
+    outline: none;
+  }
+  .notes-input:focus { border-color: var(--green); }
+  .btn-add-cart {
+    width: 100%;
+    padding: 15px;
+    background: var(--green);
+    color: #fff;
+    border: none;
+    border-radius: 14px;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 1rem;
+    font-weight: 500;
+    cursor: pointer;
+  }
+  .btn-add-cart:active { background: var(--green-light); }
+
+  /* ── CART MODAL ── */
+  .cart-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    padding: 14px 0;
+    border-bottom: 1px solid var(--border);
+  }
+  .cart-item-img {
+    width: 52px;
+    height: 52px;
+    border-radius: 10px;
+    object-fit: cover;
+    flex-shrink: 0;
+    background: var(--cream);
+  }
+  .cart-item-info { flex: 1; min-width: 0; }
+  .cart-item-name { font-size: 0.9rem; font-weight: 500; }
+  .cart-item-date { font-size: 0.78rem; color: var(--text-muted); margin-top: 2px; }
+  .cart-item-price { font-size: 0.82rem; color: var(--green); margin-top: 2px; }
+  .cart-item-remove {
+    background: none;
+    border: none;
+    color: #c44;
+    cursor: pointer;
+    font-size: 0.85rem;
+    padding: 0;
+    flex-shrink: 0;
+  }
+  .btn-order {
+    width: 100%;
+    padding: 15px;
+    background: var(--rose);
+    color: #fff;
+    border: none;
+    border-radius: 14px;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 1rem;
+    font-weight: 500;
+    cursor: pointer;
+    margin-top: 16px;
+  }
+  .cart-empty { text-align: center; padding: 32px 0; color: var(--text-muted); font-size: 0.9rem; }
+
+  /* ── CONFIRM SCREEN ── */
+  .confirm-screen {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 32px 20px;
+    text-align: center;
+  }
+  .confirm-icon { font-size: 3.5rem; margin-bottom: 16px; }
+  .confirm-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.6rem;
+    margin-bottom: 8px;
+  }
+  .confirm-sub { font-size: 0.9rem; color: var(--text-muted); line-height: 1.6; margin-bottom: 28px; }
+  .btn-new-order {
+    padding: 14px 32px;
+    background: var(--green);
+    color: #fff;
+    border: none;
+    border-radius: 12px;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.95rem;
+    font-weight: 500;
+    cursor: pointer;
+  }
+
+  /* ── ADMIN ── */
+  .admin-screen { padding: 0 0 80px; }
+  .admin-tabs {
+    display: flex;
+    border-bottom: 1px solid var(--border);
+    background: #fff;
+    position: sticky;
+    top: 57px;
+    z-index: 90;
+  }
+  .admin-tab {
+    flex: 1;
+    padding: 12px 8px;
+    text-align: center;
+    font-size: 0.8rem;
+    cursor: pointer;
+    color: var(--text-muted);
+    border-bottom: 2px solid transparent;
+    font-family: 'DM Sans', sans-serif;
+  }
+  .admin-tab.active { color: var(--green); border-bottom-color: var(--green); font-weight: 500; }
+  .admin-tab-content { display: none; padding: 16px; }
+  .admin-tab-content.active { display: block; }
+
+  /* Admin Produkte */
+  .admin-prod-card {
+    background: #fff;
+    border: 1.5px solid var(--border);
+    border-radius: 14px;
+    overflow: hidden;
+    margin-bottom: 12px;
+  }
+  .admin-prod-img { width: 100%; height: 120px; object-fit: cover; display: block; background: var(--cream); }
+  .admin-prod-placeholder { width: 100%; height: 80px; background: var(--cream); display: flex; align-items: center; justify-content: center; font-size: 1.8rem; }
+  .admin-prod-body { padding: 12px; }
+  .admin-input {
+    width: 100%;
+    padding: 10px 12px;
+    border: 1.5px solid var(--border);
+    border-radius: 10px;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.88rem;
+    color: var(--dark);
+    background: var(--cream);
+    margin-bottom: 8px;
+    outline: none;
+  }
+  .admin-input:focus { border-color: var(--green); }
+  .admin-row { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-bottom: 8px; }
+  .btn-save {
+    width: 100%;
+    padding: 10px;
+    background: var(--green);
+    color: #fff;
+    border: none;
+    border-radius: 10px;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.88rem;
+    font-weight: 500;
+    cursor: pointer;
+    margin-bottom: 6px;
+  }
+  .btn-danger {
+    width: 100%;
+    padding: 10px;
+    background: transparent;
+    color: #c44;
+    border: 1px solid #c44;
+    border-radius: 10px;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.88rem;
+    cursor: pointer;
+  }
+  .drop-zone {
+    border: 2px dashed var(--border);
+    border-radius: 14px;
+    padding: 28px 16px;
+    text-align: center;
+    cursor: pointer;
+    background: var(--cream);
+    margin-bottom: 16px;
+    color: var(--text-muted);
+    font-size: 0.88rem;
+  }
+  .drop-zone:hover { border-color: var(--green); }
+
+  /* Admin Bestellungen */
+  .order-card { background:#fff; border:1.5px solid var(--border); border-radius:14px; margin-bottom:12px; overflow:hidden; }
+  .order-header { display:flex; justify-content:space-between; align-items:flex-start; padding:12px 14px; background:var(--cream); border-bottom:1px solid var(--border); }
+  .order-user { font-weight:600; font-size:0.9rem; }
+  .order-date { font-size:0.72rem; color:var(--text-muted); margin-top:2px; }
+  .order-delivery { font-size:0.78rem; color:var(--rose); font-weight:500; }
+  .order-item { padding:6px 14px; font-size:0.82rem; border-bottom:1px solid #f5f0eb; }
+  .order-item:last-child { border-bottom:none; }
+  .dk-stats-row { display:grid; grid-template-columns:1fr 1fr; gap:8px; margin-bottom:14px; }
+  .dk-stat-card { background:#fff; border:1.5px solid var(--border); border-radius:12px; padding:10px 12px; text-align:center; }
+  .dk-stat-val { font-size:1.3rem; font-weight:700; color:var(--dark); }
+  .dk-stat-lbl { font-size:0.7rem; color:var(--text-muted); text-transform:uppercase; letter-spacing:0.8px; margin-top:2px; }
+  .dk-orders-table { width:100%; border-collapse:collapse; font-size:0.83rem; }
+  .dk-orders-table th { padding:7px 8px; text-align:left; font-size:0.7rem; text-transform:uppercase; letter-spacing:1px; color:var(--text-muted); border-bottom:2px solid var(--border); white-space:nowrap; }
+  .dk-orders-table td { padding:8px 8px; border-bottom:1px solid #f0ebe5; vertical-align:top; }
+  .dk-view-btn { padding:10px 6px; border-radius:10px; border:1.5px solid var(--border); background:#fff; color:var(--dark); font-family:'DM Sans',sans-serif; font-size:0.82rem; cursor:pointer; -webkit-tap-highlight-color:transparent; text-align:center; }
+  .dk-view-btn.active { background:var(--dark); color:#fff; border-color:var(--dark); }
+
+  /* ── TOAST ── */
+  #toastDeko {
+    position: fixed;
+    bottom: 80px;
+    left: 50%;
+    transform: translateX(-50%) translateY(20px);
+    background: var(--dark);
+    color: #fff;
+    padding: 10px 20px;
+    border-radius: 20px;
+    font-size: 0.85rem;
+    opacity: 0;
+    transition: all 0.3s;
+    z-index: 999;
+    white-space: nowrap;
+    pointer-events: none;
+  }
+  #toastDeko.show { opacity: 1; transform: translateX(-50%) translateY(0); }
+
+  /* ── LOADING ── */
+  #loadingDeko {
+    position: fixed;
+    inset: 0;
+    background: rgba(253,250,247,0.9);
+    z-index: 500;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    gap: 12px;
+  }
+  #loadingDeko.show { display: flex; }
+  .spinner {
+    width: 36px; height: 36px;
+    border: 3px solid var(--border);
+    border-top-color: var(--green);
+    border-radius: 50%;
+    animation: spin 0.8s linear infinite;
+  }
+  @keyframes spin { to { transform: rotate(360deg); } }
+
+  /* ── CROP MODAL ── */
+  .crop-modal {
+    position: fixed; inset: 0; z-index: 600;
+    background: rgba(0,0,0,0.9);
+    display: none; flex-direction: column;
+    align-items: center; justify-content: center;
+  }
+  .crop-modal.open { display: flex; }
+  .crop-frame {
+    width: min(90vw, 360px); height: min(90vw, 360px);
+    border-radius: 16px; overflow: hidden;
+    position: relative; background: #000; flex-shrink: 0;
+  }
+  #dekocrImg {
+    position: absolute; cursor: grab; touch-action: none;
+    user-select: none; -webkit-user-select: none;
+  }
+  .crop-controls { margin-top: 16px; display: flex; flex-direction: column; align-items: center; gap: 10px; width: min(90vw, 360px); }
+  .crop-zoom-row { display: flex; align-items: center; gap: 10px; width: 100%; }
+  .crop-zoom-row input { flex: 1; }
+  .crop-zoom-val { color: #fff; font-size: 0.82rem; width: 38px; text-align: right; }
+  .crop-btns { display: flex; gap: 10px; width: 100%; }
+  .crop-btns button {
+    flex: 1; padding: 12px; border-radius: 12px; border: none;
+    font-family: 'DM Sans', sans-serif; font-size: 0.9rem; cursor: pointer;
+  }
+  .crop-cancel { background: rgba(255,255,255,0.15); color: #fff; }
+  .crop-confirm { background: var(--green); color: #fff; }
+
+  select.admin-input { appearance: none; background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%238B7355' stroke-width='1.5' fill='none'/%3E%3C/svg%3E"); background-repeat: no-repeat; background-position: right 12px center; padding-right: 32px; }
+  @keyframes confettiFall{0%{transform:translateY(-20px) rotate(0deg);opacity:1}100%{transform:translateY(100vh) rotate(720deg);opacity:0}}
+  .confetti-piece{position:fixed;width:8px;height:8px;border-radius:2px;animation:confettiFall linear forwards;pointer-events:none;z-index:9999;}
+  @keyframes cartPulse{0%,100%{transform:scale(1)}50%{transform:scale(1.22)}}
+  .cart-pulse{animation:cartPulse 0.35s ease;}
+  @keyframes badgePop{0%{transform:scale(1)}50%{transform:scale(1.5)}100%{transform:scale(1)}}
+  .badge-pop{animation:badgePop 0.35s ease;}
+</style>
+</head>
+<body>
+
+<!-- LOADING -->
+<div id="loadingDeko">
+  <div class="spinner"></div>
+  <div id="loadingTextDeko" style="font-size:0.85rem;color:var(--text-muted);">Laden...</div>
+</div>
+
+<!-- TOAST -->
+<div id="toastDeko"></div>
+
+<!-- LOGIN -->
+<div id="loginScreen">
+  <div class="login-box">
+    <div class="login-logo">🌿</div>
+    <div class="login-title">FM Deko</div>
+    <div class="login-sub">Deko & Accessoires — jederzeit verfügbar</div>
+    <div style="position:relative;">
+      <input type="text" id="loginUser" placeholder="Benutzername" autocomplete="off" autocapitalize="off"
+        oninput="filterDkSavedLogins()" onfocus="showDkSavedLogins()" onblur="setTimeout(hideDkSavedLogins,150)"
+        onkeydown="if(event.key==='Enter')document.getElementById('loginPass').focus()"
+        style="width:100%;padding:13px 16px;border:1.5px solid var(--border);border-radius:12px;font-family:'DM Sans',sans-serif;font-size:1rem;color:var(--dark);background:var(--cream);margin-bottom:12px;outline:none;">
+      <div id="dkSavedLoginsDropdown" style="display:none;position:absolute;top:100%;left:0;right:0;background:#fff;border:1.5px solid var(--border);border-radius:12px;box-shadow:0 4px 16px rgba(0,0,0,0.1);z-index:99;margin-top:-8px;overflow:hidden;"></div>
+    </div>
+    <div style="position:relative;">
+      <input type="password" id="loginPass" placeholder="Passwort"
+        onkeydown="if(event.key==='Enter')doLogin()"
+        style="width:100%;padding:13px 44px 13px 16px;border:1.5px solid var(--border);border-radius:12px;font-family:'DM Sans',sans-serif;font-size:1rem;color:var(--dark);background:var(--cream);margin-bottom:12px;outline:none;">
+      <span onclick="const i=document.getElementById('loginPass');i.type=i.type==='password'?'text':'password';this.textContent=i.type==='password'?'👁':'🙈'"
+        style="position:absolute;right:14px;top:14px;cursor:pointer;font-size:1rem;user-select:none;">👁</span>
+    </div>
+    <div style="display:flex;align-items:center;gap:8px;margin-bottom:16px;">
+      <input type="checkbox" id="dkRememberMe" style="width:16px;height:16px;accent-color:var(--rose);cursor:pointer;">
+      <label for="dkRememberMe" style="font-size:0.85rem;color:var(--text-muted);cursor:pointer;">Login merken</label>
+    </div>
+    <button class="btn-login" onclick="doLogin()">Einloggen</button>
+    <div id="loginError">Benutzername oder Passwort falsch.</div>
+  </div>
+</div>
+
+<!-- APP -->
+<div id="appScreen" class="screen">
+  <!-- Header -->
+  <div class="app-header">
+    <div class="header-left">
+      <div class="header-logo">🌿</div>
+      <div class="header-title">FM Deko</div>
+    </div>
+    <div class="header-right">
+      <span id="userBadgeDeko"></span>
+      <button id="historyBtnDeko" onclick="showDekoHistory()" style="display:none;background:none;border:1px solid var(--border);border-radius:20px;padding:6px 12px;font-family:'DM Sans',sans-serif;font-size:0.78rem;cursor:pointer;color:var(--text-muted);margin-right:4px;">📋</button>
+      <button id="cartBtnDeko" onclick="openCart()" style="display:none;">
+        🛒 Warenkorb
+        <span id="cartCountDeko"></span>
+      </button>
+      <button onclick="doLogout()" style="background:none;border:1px solid var(--border);border-radius:20px;padding:6px 12px;font-family:'DM Sans',sans-serif;font-size:0.78rem;cursor:pointer;color:var(--text-muted);">Logout</button>
+    </div>
+  </div>
+
+  <!-- Kategorie-Auswahl -->
+  <div id="catScreen" class="cat-screen">
+    <div class="cat-screen-title">Deko & Accessoires</div>
+    <div class="cat-screen-sub">Wähle eine Kategorie</div>
+    <div style="background:#fff;border:1.5px solid var(--border);border-radius:14px;padding:14px 16px;margin-bottom:20px;">
+      <div style="font-size:0.72rem;text-transform:uppercase;letter-spacing:1px;color:var(--text-muted);margin-bottom:8px;font-weight:500;">📅 Gewünschtes Lieferdatum</div>
+      <input type="date" id="globalDeliveryDate" min=""
+        style="width:100%;padding:11px 14px;border:1.5px solid var(--rose);border-radius:10px;font-family:'DM Sans',sans-serif;font-size:1rem;color:var(--dark);background:var(--cream);outline:none;"
+        onchange="updateAllCartDates(this.value)">
+      <div style="font-size:0.75rem;color:var(--text-muted);margin-top:6px;">Gilt für alle Artikel in deiner Bestellung</div>
+    </div>
+    <div class="cat-grid" id="catGrid"></div>
+  </div>
+
+  <!-- Produkte -->
+  <div id="prodScreen" class="prod-screen" style="display:none;">
+    <div class="prod-header">
+      <button class="btn-back" onclick="showCatScreen()">← Zurück</button>
+      <div class="prod-header-title" id="prodScreenTitle"></div>
+    </div>
+    <div class="prod-grid" id="prodGrid"></div>
+  </div>
+
+  <!-- Admin Dashboard -->
+  <div id="adminDashboard" class="screen" style="display:none;padding:24px 16px;">
+    <div style="font-family:'Playfair Display',serif;font-size:1.6rem;margin-bottom:4px;color:var(--dark);">FM Deko</div>
+    <div style="font-size:0.82rem;color:var(--text-muted);margin-bottom:28px;" id="adminDashUser"></div>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:12px;">
+      <button onclick="openAdminTab('produkte')"
+        style="padding:24px 16px;border:1.5px solid var(--border);border-radius:18px;background:#fff;font-family:'DM Sans',sans-serif;cursor:pointer;text-align:left;-webkit-tap-highlight-color:transparent;">
+        <div style="font-size:1.6rem;margin-bottom:8px;">🌿</div>
+        <div style="font-size:0.92rem;font-weight:600;color:var(--dark);">Artikel</div>
+        <div style="font-size:0.72rem;color:var(--text-muted);margin-top:2px;">Anlegen & bearbeiten</div>
+      </button>
+      <button onclick="openAdminTab('bestellungen')"
+        style="padding:24px 16px;border:1.5px solid var(--border);border-radius:18px;background:#fff;font-family:'DM Sans',sans-serif;cursor:pointer;text-align:left;-webkit-tap-highlight-color:transparent;">
+        <div style="font-size:1.6rem;margin-bottom:8px;">📋</div>
+        <div style="font-size:0.92rem;font-weight:600;color:var(--dark);">Bestellungen</div>
+        <div style="font-size:0.72rem;color:var(--text-muted);margin-top:2px;" id="dashOrderCount">Laden…</div>
+      </button>
+    </div>
+    <button onclick="openAdminTab('einstellungen')"
+      style="width:100%;padding:20px 16px;border:1.5px solid var(--border);border-radius:18px;background:#fff;font-family:'DM Sans',sans-serif;cursor:pointer;text-align:left;display:flex;align-items:center;gap:14px;-webkit-tap-highlight-color:transparent;">
+      <div style="font-size:1.6rem;">⚙️</div>
+      <div>
+        <div style="font-size:0.92rem;font-weight:600;color:var(--dark);">Einstellungen</div>
+        <div style="font-size:0.72rem;color:var(--text-muted);margin-top:2px;">Codes, Kategorien, Passwort</div>
+      </div>
+    </button>
+  </div>
+
+  <!-- Admin -->
+  <div id="adminScreen" class="admin-screen" style="display:none;">
+    <div class="admin-tabs" id="adminTabBar" style="display:flex;align-items:center;">
+      <div class="admin-tab" onclick="showAdminDashboard()" style="font-size:1rem;padding:10px 14px;">🏠</div>
+      <div class="admin-tab active" onclick="switchAdminTab('produkte')">🌿 Produkte</div>
+      <div class="admin-tab" onclick="switchAdminTab('bestellungen')">📋 Bestellungen</div>
+      <div class="admin-tab" onclick="switchAdminTab('einstellungen')">⚙️ Einstellungen</div>
+    </div>
+    <div id="adminProdukte" class="admin-tab-content active">
+      <input type="file" id="dekoFileInput" accept="image/*" multiple style="display:none" onchange="handleDekoFiles(this.files)">
+      <input type="file" id="dekoCameraInput" accept="image/*" capture="environment" style="display:none" onchange="handleDekoFiles(this.files)">
+      <div class="drop-zone" id="dekoDropZone" onclick="document.getElementById('dekoFileInput').click()">
+        📷 Tippen zum Hochladen aus Galerie
+      </div>
+      <button onclick="document.getElementById('dekoCameraInput').click()"
+        style="width:100%;padding:13px;background:var(--cream);border:1.5px solid var(--border);border-radius:14px;font-family:'DM Sans',sans-serif;font-size:0.88rem;cursor:pointer;color:var(--dark);margin-bottom:16px;margin-top:-8px;">
+        📸 Kamera öffnen & fotografieren
+      </button>
+      <input type="text" id="dkProdSearch" placeholder="🔍 Artikel suchen..." oninput="renderAdminProducts()"
+        autocomplete="off" style="width:100%;padding:10px 14px;border:1.5px solid var(--border);border-radius:12px;font-family:'DM Sans',sans-serif;font-size:0.88rem;background:var(--cream);outline:none;margin-bottom:10px;">
+      <div id="adminProdList"></div>
+    </div>
+    <div id="adminBestellungen" class="admin-tab-content">
+      <!-- Stats -->
+      <div class="dk-stats-row" id="dkStatsRow"></div>
+
+      <!-- View Toggle — 2×2 Grid -->
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:6px;margin-bottom:10px;">
+        <button class="dk-view-btn active" id="dkVBtnAll" onclick="dkSetView('all')">📋 Alle</button>
+        <button class="dk-view-btn" id="dkVBtnCustomer" onclick="dkSetView('customer')">👥 Pro Kunde</button>
+        <button class="dk-view-btn" id="dkVBtnProduct" onclick="dkSetView('product')">📦 Pro Artikel</button>
+        <button class="dk-view-btn" id="dkVBtnDate" onclick="dkSetView('date')">📅 Pro Datum</button>
+      </div>
+
+      <!-- Suche + Aktionen -->
+      <div style="display:flex;gap:6px;margin-bottom:6px;align-items:center;">
+        <input type="text" id="dkOrderSearch" placeholder="🔍 Suchen..." oninput="dkRenderOrders()"
+          style="flex:1;padding:9px 12px;border:1px solid var(--border);border-radius:10px;font-family:'DM Sans',sans-serif;font-size:0.85rem;outline:none;background:var(--cream);">
+        <button onclick="loadOrders()" title="Neu laden"
+          style="padding:9px 13px;border:1px solid var(--border);border-radius:10px;background:#fff;font-size:1rem;cursor:pointer;-webkit-tap-highlight-color:transparent;">🔄</button>
+      </div>
+      <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:6px;margin-bottom:10px;">
+        <button onclick="dkPrintOrders()"
+          style="padding:9px 6px;border:1px solid var(--border);border-radius:10px;background:#fff;font-size:0.8rem;cursor:pointer;font-family:'DM Sans',sans-serif;-webkit-tap-highlight-color:transparent;">🖨️ Drucken</button>
+        <button onclick="dkExportCSV()"
+          style="padding:9px 6px;border:1px solid var(--border);border-radius:10px;background:#fff;font-size:0.8rem;cursor:pointer;font-family:'DM Sans',sans-serif;-webkit-tap-highlight-color:transparent;">📥 CSV</button>
+        <button onclick="dkShowClearConfirm()"
+          style="padding:9px 6px;border:1.5px solid #e57373;border-radius:10px;background:#fff;color:#c44;font-size:0.8rem;cursor:pointer;font-family:'DM Sans',sans-serif;-webkit-tap-highlight-color:transparent;">🗑️ Leeren</button>
+      </div>
+      <div id="dkClearConfirm" style="display:none;font-size:0.82rem;margin-bottom:10px;padding:12px 14px;background:#fff3f3;border:1px solid #e57373;border-radius:10px;">
+        Wirklich alle Bestellungen löschen?
+        <button onclick="dkClearOrders()" style="background:none;border:none;color:#c44;font-weight:700;cursor:pointer;margin-left:8px;">Ja löschen</button>
+        <button onclick="document.getElementById('dkClearConfirm').style.display='none'" style="background:none;border:none;color:var(--text-muted);cursor:pointer;margin-left:6px;">Abbrechen</button>
+      </div>
+
+      <!-- Inhalte -->
+      <div id="dkOrdersAll"></div>
+      <div id="dkOrdersCustomer" style="display:none;"></div>
+      <div id="dkOrdersProduct" style="display:none;"></div>
+      <div id="dkOrdersDate" style="display:none;"></div>
+    </div>
+
+    <div id="adminEinstellungen" class="admin-tab-content">
+      <!-- Passwort ändern -->
+      <div style="background:#fff;border:1.5px solid var(--border);border-radius:14px;padding:16px;margin-bottom:14px;">
+        <div style="font-size:0.75rem;text-transform:uppercase;letter-spacing:1.2px;color:var(--text-muted);margin-bottom:12px;font-weight:500;">🔑 Admin-Passwort ändern</div>
+        <input class="admin-input" type="password" id="dekoNewPass1" placeholder="Neues Passwort">
+        <input class="admin-input" type="password" id="dekoNewPass2" placeholder="Passwort wiederholen">
+        <button class="btn-save" onclick="changeDekoPass()">✓ Passwort speichern</button>
+        <div id="dekoPassMsg" style="font-size:0.82rem;margin-top:8px;display:none;"></div>
+      </div>
+
+      <!-- Kategorien verwalten -->
+      <div style="background:#fff;border:1.5px solid var(--border);border-radius:14px;padding:16px;margin-bottom:14px;">
+        <div style="font-size:0.75rem;text-transform:uppercase;letter-spacing:1.2px;color:var(--text-muted);margin-bottom:12px;font-weight:500;">🏷️ Produktgruppen</div>
+        <div id="dekoCatList" style="margin-bottom:10px;"></div>
+        <input class="admin-input" type="text" id="dekoNewCatName" placeholder="Name der Gruppe (z.B. Kerzen)" autocomplete="off" autocapitalize="off">
+        <button class="btn-save" onclick="addDekoCategory()">+ Hinzufügen</button>
+      </div>
+
+      <!-- Codes verwalten -->
+      <div style="background:#fff;border:1.5px solid var(--border);border-radius:14px;padding:16px;">
+        <div style="font-size:0.75rem;text-transform:uppercase;letter-spacing:1.2px;color:var(--text-muted);margin-bottom:12px;font-weight:500;">👥 Kundencodes</div>
+        <div style="display:flex;flex-wrap:wrap;gap:8px;margin-bottom:8px;">
+          <input class="admin-input" type="text" id="dekoNewUser" placeholder="Kundenname" style="margin-bottom:0;flex:1;min-width:120px;">
+          <input class="admin-input" type="text" id="dekoNewUserPass" placeholder="Code / Passwort" style="margin-bottom:0;flex:1;min-width:120px;">
+          <input class="admin-input" type="email" id="dekoNewUserEmail" placeholder="E-Mail (optional)" style="margin-bottom:0;flex:1;min-width:160px;">
+        </div>
+        <button class="btn-save" onclick="addDekoCode()" style="margin-bottom:12px;">+ Hinzufügen</button>
+        <input class="admin-input" type="text" id="dekoCodesSearch" placeholder="🔍 Kunde suchen..." oninput="renderDekoCodesList()" style="margin-bottom:12px;">
+        <div id="dekoCodesList"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- PRODUCT DETAIL MODAL -->
+<div class="modal-overlay" id="productModal" onclick="if(event.target===this)closeProductModal()">
+  <div class="modal-sheet">
+    <div class="modal-handle"></div>
+    <div id="modalContent"></div>
+  </div>
+</div>
+
+<!-- CART MODAL -->
+<div class="modal-overlay" id="cartModal" onclick="if(event.target===this)closeCart()">
+  <div class="modal-sheet">
+    <div class="modal-handle"></div>
+    <div style="padding:0 20px 8px;">
+      <div style="font-family:'Playfair Display',serif;font-size:1.2rem;margin-bottom:16px;">Warenkorb</div>
+      <div id="cartContent"></div>
+    </div>
+  </div>
+</div>
+
+<!-- Note Modal -->
+<div id="dekoNoteModal" style="display:none;position:fixed;inset:0;z-index:2000;background:rgba(0,0,0,0.45);align-items:center;justify-content:center;padding:24px;">
+  <div style="background:#fff;border-radius:18px;padding:24px;width:100%;max-width:360px;box-shadow:0 8px 40px rgba(0,0,0,0.18);font-family:'DM Sans',sans-serif;">
+    <div style="font-size:1rem;font-weight:600;color:var(--dark);margin-bottom:4px;" id="dekoNoteModalTitle">Bemerkung</div>
+    <div style="font-size:0.78rem;color:var(--text-muted);margin-bottom:14px;">Wird im Warenkorb angezeigt</div>
+    <textarea id="dekoNoteInput" maxlength="50" rows="3" placeholder="z.B. Farbe, Größe, Wunsch …"
+      style="width:100%;padding:12px 14px;border:1.5px solid var(--border);border-radius:12px;font-family:'DM Sans',sans-serif;font-size:0.9rem;background:var(--cream);outline:none;resize:none;box-sizing:border-box;"></textarea>
+    <div style="text-align:right;font-size:0.7rem;color:var(--text-muted);margin-top:3px;margin-bottom:16px;" id="dekoNoteCharCount">0 / 50</div>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;">
+      <button onclick="closeDekoNoteModal()"
+        style="padding:12px;border:1.5px solid var(--border);border-radius:12px;background:#fff;font-family:'DM Sans',sans-serif;font-size:0.88rem;cursor:pointer;color:var(--text-muted);-webkit-tap-highlight-color:transparent;">
+        Abbrechen
+      </button>
+      <button onclick="confirmDekoNote()"
+        style="padding:12px;border:none;border-radius:12px;background:var(--green);color:#fff;font-family:'DM Sans',sans-serif;font-size:0.88rem;font-weight:600;cursor:pointer;-webkit-tap-highlight-color:transparent;">
+        ✓ Speichern
+      </button>
+    </div>
+  </div>
+</div>
+
+<!-- CONFIRM SCREEN -->
+<div id="confirmScreen" class="screen confirm-screen">
+  <div class="confirm-icon">🌿</div>
+  <div class="confirm-title">Bestellung eingegangen!</div>
+  <div class="confirm-sub" id="confirmText">Deine Bestellung wurde erfolgreich übermittelt.</div>
+  <button class="btn-new-order" onclick="backToShop()">Weiter einkaufen</button>
+</div>
+
+<!-- HISTORY MODAL -->
+<div class="modal-overlay" id="dekoHistoryModal" style="z-index:1100;" onclick="if(event.target===this)closeDekoHistory()">
+  <div class="modal-box" style="max-height:80vh;display:flex;flex-direction:column;">
+    <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:16px;" id="dekoHistoryHeader">
+      <h3 style="font-family:'Playfair Display',serif;font-size:1.15rem;margin:0;">📋 Meine Bestellungen</h3>
+      <button onclick="closeDekoHistory()" style="background:none;border:none;font-size:1.3rem;cursor:pointer;color:var(--text-muted);">✕</button>
+    </div>
+    <div id="dekoHistoryContent" style="overflow-y:auto;flex:1;-webkit-overflow-scrolling:touch;"></div>
+  </div>
+</div>
+
+<!-- CROP MODAL -->
+<div class="crop-modal" id="dekoCropModal">
+  <div class="crop-frame" id="dekoCropFrame">
+    <img id="dekocrImg" draggable="false"
+      onmousedown="dkCropDragStart(event)" ontouchstart="dkCropDragStart(event)"
+      onmousemove="dkCropDragMove(event)" ontouchmove="dkCropDragMove(event)"
+      onmouseup="dkCropDragEnd()" ontouchend="dkCropDragEnd()">
+  </div>
+  <div class="crop-controls">
+    <div class="crop-zoom-row">
+      <span style="color:#fff;font-size:0.8rem;">🔍</span>
+      <input type="range" id="dekoCropZoom" oninput="dkCropZoomChange()">
+      <span class="crop-zoom-val" id="dekoCropZoomVal">100%</span>
+    </div>
+    <div class="crop-btns">
+      <button class="crop-cancel" onclick="dkCropCancel()">Abbrechen</button>
+      <button class="crop-confirm" onclick="dkCropConfirm()">✓ Übernehmen</button>
+    </div>
+  </div>
+</div>
+
+<script>
+// ── Auto-Login ───────────────────────────────────────────────────────
+(function() {
+  const saved = localStorage.getItem('dkSavedLogin');
+  if (!saved) return;
+  try {
+    const { u, p } = JSON.parse(saved);
+    const userEl = document.getElementById('loginUser');
+    const passEl = document.getElementById('loginPass');
+    const remEl = document.getElementById('dkRememberMe');
+    if (userEl) userEl.value = u;
+    if (passEl) passEl.value = p;
+    if (remEl) remEl.checked = true;
+    window._dkAutoLogin = { u, p };
+    // Trigger auto login after short delay
+    setTimeout(() => {
+      if (window._dkAutoLogin) {
+        window._dkAutoLogin = null;
+        doLogin();
+      }
+    }, 300);
+  } catch(e) {}
+})();
+
+// ══════════════════════════════════════════
+// SUPABASE
+// ══════════════════════════════════════════
+const SUPABASE_URL = 'https://iyncvefqzyrnyhosiniu.supabase.co';
+const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Iml5bmN2ZWZxenlybnlob3Npbml1Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzIyMjM2OTIsImV4cCI6MjA4Nzc5OTY5Mn0.gXsoaN2ViwRdZOuAPtzce9_O5rMnHPkyQRdIVN3IYDw';
+const HEADERS = {
+  'apikey': SUPABASE_ANON_KEY,
+  'Authorization': 'Bearer ' + SUPABASE_ANON_KEY,
+  'Content-Type': 'application/json',
+  'Prefer': 'return=representation'
+};
+const REST = SUPABASE_URL + '/rest/v1';
+
+async function sbSelect(table, params='') {
+  const r = await fetch(`${REST}/${table}?${params}`, { headers: HEADERS });
+  if (!r.ok) throw new Error(`${table}: ${r.status}`);
+  return r.json();
+}
+async function sbInsert(table, data) {
+  const r = await fetch(`${REST}/${table}`, { method:'POST', headers: HEADERS, body: JSON.stringify(data) });
+  if (!r.ok) throw new Error(`Insert ${table}: ${r.status} ${await r.text()}`);
+  return r.json();
+}
+async function sbUpdate(table, filter, data) {
+  const r = await fetch(`${REST}/${table}?${filter}`, { method:'PATCH', headers: HEADERS, body: JSON.stringify(data) });
+  if (!r.ok) throw new Error(`Update ${table}: ${r.status}`);
+  return r.json();
+}
+async function sbDelete(table, filter) {
+  const r = await fetch(`${REST}/${table}?${filter}`, { method:'DELETE', headers: HEADERS });
+  if (!r.ok) throw new Error(`Delete ${table}: ${r.status}`);
+}
+
+// ══════════════════════════════════════════
+// STATE
+// ══════════════════════════════════════════
+let currentUser = null;
+let dekoProducts = [];
+let dekoCart = [];
+let _dekoNotePending = {}; // productId -> note (für noch nicht im Warenkorb) // [{product, qty, delivery_date, note}]
+let activeCategory = null;
+let dekoReservations = {}; // {productId: {qty, expiresAt}}
+
+const MASTER_USER = 'masta';
+const EMAILJS_SERVICE = 'service_0jsnxyv';
+const EMAILJS_TEMPLATE = 'template_c59cyes';
+const ADMIN_EMAIL = 'fmwieninvoice@outlook.com';
+let MASTER_PASS = 'master123'; // wird aus Settings geladen
+
+let CATEGORIES = [
+  { id: 'steckmasse', name: 'Steckmasse' },
+  { id: 'vasen',      name: 'Vasen & Gefäße' },
+  { id: 'saisonal',   name: 'Saisonales' },
+]; // wird aus deko_settings geladen falls vorhanden
+
+// ══════════════════════════════════════════
+// UTILS
+// ══════════════════════════════════════════
+// ── Saved Logins ─────────────────────────────────────────────────────
+function getDkSavedLogins() {
+  try { return JSON.parse(localStorage.getItem('dkSavedLogins') || '[]'); } catch(e) { return []; }
+}
+function saveDkLoginToList(u, p) {
+  let logins = getDkSavedLogins().filter(l => l.u !== u);
+  logins.unshift({ u, p });
+  if (logins.length > 10) logins = logins.slice(0, 10);
+  localStorage.setItem('dkSavedLogins', JSON.stringify(logins));
+}
+function showDkSavedLogins() {
+  const logins = getDkSavedLogins();
+  if (!logins.length) return;
+  renderDkLoginDropdown(logins);
+  document.getElementById('dkSavedLoginsDropdown').style.display = '';
+}
+function hideDkSavedLogins() {
+  const dd = document.getElementById('dkSavedLoginsDropdown');
+  if (dd) dd.style.display = 'none';
+}
+function filterDkSavedLogins() {
+  const val = document.getElementById('loginUser').value.toLowerCase();
+  const logins = getDkSavedLogins().filter(l => l.u.toLowerCase().includes(val));
+  if (!logins.length) { hideDkSavedLogins(); return; }
+  renderDkLoginDropdown(logins);
+  document.getElementById('dkSavedLoginsDropdown').style.display = '';
+}
+function renderDkLoginDropdown(logins) {
+  const dd = document.getElementById('dkSavedLoginsDropdown');
+  dd.innerHTML = logins.map((l, i) => `
+    <div style="display:flex;align-items:center;justify-content:space-between;padding:9px 12px;cursor:pointer;border-bottom:1px solid var(--border);font-size:0.88rem;"
+      onmousedown="selectDkSavedLogin(${i})">
+      <span>👤 ${escHtml(l.u)}</span>
+      <span onclick="event.stopPropagation();deleteDkSavedLogin(${i})" style="color:#c44;padding:0 4px;font-size:0.8rem;">✕</span>
+    </div>`).join('');
+}
+function selectDkSavedLogin(i) {
+  const l = getDkSavedLogins()[i];
+  if (!l) return;
+  document.getElementById('loginUser').value = l.u;
+  document.getElementById('loginPass').value = l.p;
+  hideDkSavedLogins();
+}
+function deleteDkSavedLogin(i) {
+  let logins = getDkSavedLogins();
+  logins.splice(i, 1);
+  localStorage.setItem('dkSavedLogins', JSON.stringify(logins));
+  showDkSavedLogins();
+}
+
+function escHtml(s) {
+  if (!s) return '';
+  return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+}
+function showToast(msg) {
+  const t = document.getElementById('toastDeko');
+  t.textContent = msg; t.classList.add('show');
+  setTimeout(() => t.classList.remove('show'), 2500);
+}
+function showLoading(msg='Laden...') {
+  document.getElementById('loadingTextDeko').textContent = msg;
+  document.getElementById('loadingDeko').classList.add('show');
+}
+function hideLoading() {
+  document.getElementById('loadingDeko').classList.remove('show');
+}
+function showScreen(id) {
+  ['loginScreen','appScreen','confirmScreen'].forEach(s => {
+    const el = document.getElementById(s);
+    if (el) el.style.display = s === id ? (s==='appScreen'?'block':'flex') : 'none';
+  });
+}
+
+// ══════════════════════════════════════════
+// LOGIN
+// ══════════════════════════════════════════
+async function doLogin() {
+  const u = document.getElementById('loginUser').value.trim();
+  const p = document.getElementById('loginPass').value.trim();
+  if (!u || !p) return;
+  showLoading('Einloggen...');
+  try {
+    // Master-Login (hardcoded wie in index.html)
+    if (u === MASTER_USER && p === MASTER_PASS) {
+      currentUser = { username: u, role: 'admin' };
+      document.getElementById('loginError').style.display = 'none';
+      if (document.getElementById('dkRememberMe')?.checked) {
+        localStorage.setItem('dkSavedLogin', JSON.stringify({ u, p }));
+        saveDkLoginToList(u, p);
+      }
+      await loadApp();
+      return;
+    }
+    // Kunden-Login via Supabase
+    const codes = await sbSelect('codes', `username=eq.${encodeURIComponent(u)}&select=*`);
+    const code = codes[0];
+    if (!code) {
+      hideLoading();
+      document.getElementById('loginError').textContent = 'Benutzername nicht gefunden.';
+      document.getElementById('loginError').style.display = 'block';
+      return;
+    }
+    if (code.password !== p) {
+      hideLoading();
+      document.getElementById('loginError').textContent = 'Passwort falsch.';
+      document.getElementById('loginError').style.display = 'block';
+      return;
+    }
+    if (code.inactive) {
+      hideLoading();
+      document.getElementById('loginError').textContent = 'Dieser Zugang ist deaktiviert.';
+      document.getElementById('loginError').style.display = 'block';
+      return;
+    }
+    currentUser = { username: u, role: code.role || 'customer', email: code.email };
+    if (document.getElementById('dkRememberMe')?.checked) {
+      localStorage.setItem('dkSavedLogin', JSON.stringify({ u, p }));
+      saveDkLoginToList(u, p);
+    }
+    document.getElementById('loginError').style.display = 'none';
+    await loadApp();
+  } catch(e) {
+    hideLoading();
+    showToast('Verbindungsfehler');
+  }
+}
+
+// ══════════════════════════════════════════
+// LOAD APP
+// ══════════════════════════════════════════
+async function loadApp() {
+  showLoading('Produkte laden...');
+  // Deko settings laden (Passwort + Kategorien)
+  try {
+    const cfgRes = await sbSelect('deko_settings', 'key=eq.config&select=value');
+    if (cfgRes[0]?.value) {
+      const cfg = JSON.parse(cfgRes[0].value);
+      if (cfg.masterPass) MASTER_PASS = cfg.masterPass;
+      if (cfg.categories && cfg.categories.length > 0) CATEGORIES = cfg.categories;
+    }
+  } catch(e) { /* deko_settings noch nicht angelegt — kein Problem */ }
+
+  try {
+    const prods = await sbSelect('deko_products', 'select=*&order=sort_order,created_at');
+    dekoProducts = prods.map(p => ({
+      id: p.id,
+      name: p.name,
+      imgData: p.img_data,
+      price: p.price,
+      notes: p.notes,
+      category: p.category,
+      active: p.active !== false,
+      unit: p.unit || '',
+      stock: p.stock ?? null,
+      sort_order: p.sort_order ?? 9999,
+    }));
+  } catch(e) {
+    dekoProducts = [];
+  }
+  hideLoading();
+
+  document.getElementById('userBadgeDeko').textContent = currentUser.username;
+  showScreen('appScreen');
+
+  if (currentUser.role === 'admin') {
+    document.getElementById('catScreen').style.display = 'none';
+    document.getElementById('prodScreen').style.display = 'none';
+    document.getElementById('adminScreen').style.display = 'none';
+  document.getElementById('adminDashboard').style.display = 'none';
+    document.getElementById('adminDashboard').style.display = 'block';
+    document.getElementById('adminDashUser').textContent = 'Angemeldet als ' + currentUser.username;
+    // Bestellanzahl nachladen
+    loadOrders().then(() => {
+      const el = document.getElementById('dashOrderCount');
+      if (el) el.textContent = dkOrders.length + ' Bestellung' + (dkOrders.length !== 1 ? 'en' : '');
+    });
+  } else {
+    document.getElementById('catScreen').style.display = 'block';
+    document.getElementById('adminScreen').style.display = 'none';
+    document.getElementById('adminTabBar') && (document.getElementById('adminTabBar').style.display = 'none');
+    document.getElementById('cartBtnDeko').style.display = '';
+    document.getElementById('historyBtnDeko').style.display = '';
+    renderCatScreen();
+  initDeliveryDate();
+  }
+}
+
+// ══════════════════════════════════════════
+// CATEGORIES
+// ══════════════════════════════════════════
+function initDeliveryDate() {
+  const el = document.getElementById('globalDeliveryDate');
+  if (!el) return;
+  const min = new Date(); min.setDate(min.getDate() + 2);
+  const minStr = min.toISOString().split('T')[0];
+  el.min = minStr;
+  if (!el.value || el.value < minStr) {
+    el.value = minStr;
+    updateAllCartDates(minStr);
+  }
+}
+
+function renderCatScreen() {
+  const grid = document.getElementById('catGrid');
+  const activeCats = CATEGORIES.filter(cat => {
+    return dekoProducts.some(p => p.active && p.category === cat.id);
+  });
+  if (activeCats.length === 0) {
+    grid.innerHTML = '<div style="text-align:center;padding:40px 0;color:var(--text-muted);">Aktuell keine Produkte verfügbar.</div>';
+    return;
+  }
+  grid.innerHTML = activeCats.map(cat => {
+    const count = dekoProducts.filter(p => p.active && p.category === cat.id).length;
+    return `<div class="cat-card" onclick="showProdScreen('${cat.id}')">
+      <div class="cat-card-left">
+        <div>
+          <div class="cat-name">${escHtml(cat.name)}</div>
+          <div class="cat-count">${count} Artikel</div>
+        </div>
+      </div>
+      <div class="cat-arrow">›</div>
+    </div>`;
+  }).join('');
+}
+
+function updateAllCartDates(val) {
+  dekoCart.forEach(i => i.delivery_date = val);
+}
+
+function showCatScreen() {
+  activeCategory = null;
+  document.getElementById('prodScreen').style.display = 'none';
+  document.getElementById('catScreen').style.display = 'block';
+}
+
+// ══════════════════════════════════════════
+// PRODUCTS
+// ══════════════════════════════════════════
+function showProdScreen(catId) {
+  activeCategory = catId;
+  const cat = CATEGORIES.find(c => c.id === catId);
+  document.getElementById('prodScreenTitle').textContent = cat ? cat.name : '';
+  document.getElementById('catScreen').style.display = 'none';
+  document.getElementById('prodScreen').style.display = 'block';
+  renderProdGrid();
+}
+
+function renderProdGrid() {
+  const grid = document.getElementById('prodGrid');
+  const prods = dekoProducts.filter(p => p.active && p.category === activeCategory);
+  if (prods.length === 0) {
+    grid.innerHTML = '<div style="grid-column:1/-1;text-align:center;padding:40px 0;color:var(--text-muted);">Aktuell keine Produkte.</div>';
+    return;
+  }
+  grid.innerHTML = prods.map(p => {
+    const price = p.price ? parseFloat(p.price) : null;
+    const stockText = p.stock != null ? `${p.stock} Stk verfügbar` : (p.unit || 'Verfügbar');
+    return `
+    <div class="prod-card" id="dkcard-${p.id}">
+      ${p.imgData ? `<img class="prod-img" src="${p.imgData}" alt="${escHtml(p.name)}" onclick="openProductDetail('${p.id}')" style="cursor:pointer;">` : `<div class="prod-img-placeholder" onclick="openProductDetail('${p.id}')" style="cursor:pointer;">🌿</div>`}
+      <div class="prod-info">
+        <div class="prod-name">${escHtml(p.name)}</div>
+        <div class="prod-qty-row">
+          ${price ? `<div class="prod-price">€ ${price.toFixed(2)}</div>` : '<div></div>'}
+          <div style="display:flex;align-items:center;gap:6px;">
+            <button class="prod-qty-btn" onclick="changeProdQty('${p.id}',-1)">−</button>
+            <div class="prod-qty-val" id="dkqty-${p.id}">0</div>
+            <button class="prod-qty-btn" onclick="changeProdQty('${p.id}',1)">+</button>
+          </div>
+        </div>
+        <div class="prod-stock-row">
+          <span id="dkstock-${p.id}">${escHtml(stockText)}</span>
+          ${price ? `<span class="prod-total" id="dktotal-${p.id}"></span>` : ''}
+        </div>
+        <div style="display:flex;align-items:center;justify-content:space-between;margin-top:4px;min-height:1.4em;">
+          ${p.unit ? `<div style="font-size:0.7rem;color:var(--text-muted);">Einheit: 1× ${escHtml(p.unit)}</div>` : '<div></div>'}
+          <button onclick="openDekoNoteModal(event,'${p.id}')" id="dknotebtn-${p.id}" title="Bemerkung hinzufügen"
+            style="font-size:1rem;padding:2px 6px;border-radius:8px;border:1px solid transparent;background:none;color:var(--text-muted);cursor:pointer;-webkit-tap-highlight-color:transparent;line-height:1;">
+            🗒
+          </button>
+        </div>
+      </div>
+    </div>`;
+  }).join('');
+}
+
+// ══════════════════════════════════════════
+// PRODUCT CARD INLINE QTY
+// ══════════════════════════════════════════
+function changeProdQty(id, delta) {
+  const p = dekoProducts.find(x => String(x.id) === String(id));
+  if (!p) return;
+  const el = document.getElementById('dkqty-' + id);
+  if (!el) return;
+  const current = parseInt(el.textContent);
+  const newVal = current + delta;
+  if (newVal < 0) return;
+  if (newVal === 0 && current === 0) return;
+
+  // Verfügbarkeit prüfen
+  const avail = dekoGetAvailable(p);
+  if (delta > 0 && avail !== null && avail <= 0) {
+    showToast('Nicht mehr verfügbar');
+    return;
+  }
+
+  if (newVal === 0) {
+    // Aus Warenkorb entfernen
+    const existing = dekoCart.find(i => String(i.product.id) === String(id));
+    if (existing) { dekoRelease(id, existing.qty); }
+    dekoCart = dekoCart.filter(i => String(i.product.id) !== String(id));
+    el.textContent = 0;
+    const tot = document.getElementById('dktotal-' + id);
+    if (tot) tot.textContent = '';
+    updateCartBtn();
+    return;
+  }
+
+  // Reservierung anpassen
+  if (delta > 0) {
+    dekoReserve(id, delta);
+    const existing = dekoCart.find(i => String(i.product.id) === String(id));
+    if (!existing) {
+      const _pendingNote = _dekoNotePending[id] || '';
+      dekoCart.push({ product: p, qty: newVal, delivery_date: null, note: _pendingNote });
+    } else {
+      existing.qty = newVal;
+    }
+  } else {
+    dekoRelease(id, -delta);
+    const existing = dekoCart.find(i => String(i.product.id) === String(id));
+    if (existing) existing.qty = newVal;
+  }
+
+  el.textContent = newVal;
+  updateCartBtn(delta > 0);
+  if (p.price) {
+    const tot = document.getElementById('dktotal-' + id);
+    if (tot) {
+      tot.textContent = '€ ' + (parseFloat(p.price) * newVal * getUnitQty(p.unit)).toFixed(2);
+    }
+  }
+}
+
+// ══════════════════════════════════════════
+// PRODUCT DETAIL (Großansicht)
+// ══════════════════════════════════════════
+function openProductDetail(id) {
+  const p = dekoProducts.find(x => String(x.id) === String(id));
+  if (!p) return;
+  const qty = parseInt(document.getElementById('dkqty-' + id)?.textContent || '1');
+  const price = p.price ? parseFloat(p.price) : null;
+  const stockText = p.stock != null ? `${p.stock} Stk verfügbar` : (p.unit || '');
+  document.getElementById('modalContent').innerHTML = `
+    ${p.imgData ? `<img class="modal-img" src="${p.imgData}" alt="${escHtml(p.name)}" style="max-height:320px;">` : `<div class="modal-img-placeholder">🌿</div>`}
+    <div class="modal-body">
+      <div class="modal-name">${escHtml(p.name)}</div>
+      ${price ? `<div class="modal-price">€ ${price.toFixed(2)} pro Einheit${p.unit ? ' · ' + escHtml(p.unit) : ''}</div>` : ''}
+      ${p.notes ? `<div class="modal-notes">${escHtml(p.notes)}</div>` : ''}
+      ${stockText ? `<div class="available-badge" style="margin-bottom:12px;">✓ ${escHtml(stockText)}</div>` : '<div class="available-badge" style="margin-bottom:12px;">✓ Jederzeit verfügbar</div>'}
+      ${p.unit ? `<div style="font-size:0.8rem;color:var(--text-muted);margin-bottom:12px;">Einheit: 1× ${escHtml(p.unit)}</div>` : ''}
+      <div style="margin-bottom:14px;">
+        <div style="font-size:0.72rem;text-transform:uppercase;letter-spacing:1px;color:var(--text-muted);margin-bottom:6px;">Bemerkung (optional)</div>
+        <input type="text" id="detailNote-${p.id}" maxlength="50" placeholder="z.B. Farbe, Größe … (max. 50 Zeichen)"
+          style="width:100%;padding:10px 12px;border:1.5px solid var(--border);border-radius:10px;font-family:'DM Sans',sans-serif;font-size:0.85rem;background:var(--cream);outline:none;box-sizing:border-box;">
+        <div style="text-align:right;font-size:0.68rem;color:var(--text-muted);margin-top:3px;" id="detailNoteCount-${p.id}">0 / 50</div>
+      </div>
+      <button onclick="(function(){const n=document.getElementById('detailNote-${p.id}')?.value||'';closeProductModal();addToCartFromCardWithNote('${p.id}',n);})()" style="width:100%;padding:13px;background:var(--green);color:#fff;border:none;border-radius:12px;font-family:'DM Sans',sans-serif;font-size:0.95rem;font-weight:500;cursor:pointer;margin-bottom:8px;">In den Warenkorb</button>
+      <button onclick="closeProductModal()" style="width:100%;padding:11px;background:none;border:1px solid var(--border);border-radius:12px;font-family:'DM Sans',sans-serif;font-size:0.88rem;cursor:pointer;color:var(--text-muted);">← Zurück zur Übersicht</button>
+    </div>`;
+  document.getElementById('productModal').classList.add('open');
+  // Zeichenzähler für Bemerkung
+  const noteEl = document.getElementById('detailNote-' + id);
+  const countEl = document.getElementById('detailNoteCount-' + id);
+  if (noteEl && countEl) {
+    noteEl.addEventListener('input', () => { countEl.textContent = noteEl.value.length + ' / 50'; });
+  }
+}
+
+// ══════════════════════════════════════════
+// PRODUCT MODAL (Warenkorb mit Datum)
+// ══════════════════════════════════════════
+function openProductModal(id, preQty) {
+  const p = dekoProducts.find(x => String(x.id) === String(id));
+  if (!p) return;
+  // Default delivery: nächste Woche
+  const next = new Date(); next.setDate(next.getDate() + 7);
+  const defaultDate = next.toISOString().split('T')[0];
+  const initQty = preQty || 1;
+  const initTotal = p.price ? (parseFloat(p.price) * initQty).toFixed(2) : null;
+  document.getElementById('modalContent').innerHTML = `
+    <div class="modal-body" style="padding-top:8px;">
+      <div class="modal-name">${escHtml(p.name)}</div>
+      ${p.price ? `<div class="modal-price">€ ${parseFloat(p.price).toFixed(2)} pro Einheit${p.unit ? ' · ' + escHtml(p.unit) : ''}</div>` : ''}
+      ${p.notes ? `<div class="modal-notes">${escHtml(p.notes)}</div>` : ''}
+
+      <div class="modal-section-label">Menge</div>
+      <div class="qty-row">
+        <button class="qty-btn" onclick="changeModalQty(-1,'${p.id}')">−</button>
+        <div class="qty-val" id="modalQty">${initQty}</div>
+        <button class="qty-btn" onclick="changeModalQty(1,'${p.id}')">+</button>
+      </div>
+      ${p.price ? `<div id="modalTotalPrice" style="font-size:0.95rem;color:var(--green);font-weight:500;margin-bottom:12px;">Gesamt: € ${initTotal}</div>` : ''}
+
+      <div class="modal-section-label">Gewünschtes Lieferdatum</div>
+      <input type="date" class="date-input" id="modalDate" value="${defaultDate}" min="${new Date().toISOString().split('T')[0]}">
+
+      <div class="modal-section-label">Anmerkung (optional)</div>
+      <textarea class="notes-input" id="modalNote" placeholder="z.B. Farbe, Größe, besondere Wünsche..."></textarea>
+
+      <button class="btn-add-cart" onclick="addToCart('${p.id}')">In den Warenkorb</button>
+    </div>`;
+  document.getElementById('productModal').classList.add('open');
+}
+
+function changeModalQty(delta, productId) {
+  const el = document.getElementById('modalQty');
+  const val = Math.max(1, parseInt(el.textContent) + delta);
+  el.textContent = val;
+  // Gesamtpreis updaten
+  if (productId) {
+    const p = dekoProducts.find(x => String(x.id) === String(productId));
+    if (p && p.price) {
+      const total = document.getElementById('modalTotalPrice');
+      if (total) total.textContent = 'Gesamt: € ' + (parseFloat(p.price) * val).toFixed(2);
+    }
+  }
+}
+
+function closeProductModal() {
+  document.getElementById('productModal').classList.remove('open');
+}
+
+let _dekoNoteProductId = null;
+
+function getUnitQty(unit) {
+  if (!unit) return 1;
+  const n = parseFloat(unit);
+  return (n && n > 0) ? n : 1;
+}
+function openDekoNoteModal(e, id) {
+  e.stopPropagation();
+  _dekoNoteProductId = id;
+  const item = dekoCart.find(i => String(i.product.id) === String(id));
+  const p = dekoProducts.find(x => String(x.id) === String(id));
+  const inp = document.getElementById('dekoNoteInput');
+  const modal = document.getElementById('dekoNoteModal');
+  document.getElementById('dekoNoteModalTitle').textContent = p ? p.name : 'Bemerkung';
+  inp.value = (item && item.note) ? item.note : (_dekoNotePending[id] || '');
+  document.getElementById('dekoNoteCharCount').textContent = inp.value.length + ' / 50';
+  inp.oninput = () => { document.getElementById('dekoNoteCharCount').textContent = inp.value.length + ' / 50'; };
+  modal.style.display = 'flex';
+  setTimeout(() => inp.focus(), 80);
+}
+
+function closeDekoNoteModal() {
+  document.getElementById('dekoNoteModal').style.display = 'none';
+  _dekoNoteProductId = null;
+}
+
+function confirmDekoNote() {
+  const id = _dekoNoteProductId;
+  const val = document.getElementById('dekoNoteInput').value.trim().slice(0, 50);
+  // In Warenkorb-Item speichern falls vorhanden, sonst in Puffer
+  const item = dekoCart.find(i => String(i.product.id) === String(id));
+  if (item) {
+    item.note = val;
+  } else {
+    if (val) _dekoNotePending[id] = val;
+    else delete _dekoNotePending[id];
+  }
+  // Button-Optik
+  const btn = document.getElementById('dknotebtn-' + id);
+  if (btn) {
+    btn.style.borderColor = val ? 'var(--rose)' : 'var(--border)';
+    btn.style.color = val ? 'var(--rose)' : 'var(--text-muted)';
+    btn.innerHTML = val ? '🗒✓' : '🗒';
+    btn.title = val ? 'Bemerkung: ' + val : 'Bemerkung hinzufügen';
+  }
+  closeDekoNoteModal();
+  showToast(val ? 'Bemerkung gespeichert ✓' : 'Bemerkung entfernt');
+}
+
+function addToCartFromCardWithNote(id, note) {
+  addToCart(id);
+  if (note && note.trim()) {
+    const item = dekoCart.find(i => String(i.product.id) === String(id));
+    if (item) item.note = note.trim().slice(0, 50);
+  }
+}
+
+function addToCart(id) {
+  const p = dekoProducts.find(x => String(x.id) === String(id));
+  if (!p) return;
+  const qty = parseInt(document.getElementById('modalQty').textContent);
+  const date = document.getElementById('modalDate').value;
+  const note = document.getElementById('modalNote').value.trim();
+  if (!date) { showToast('Bitte Lieferdatum angeben'); return; }
+  const existing = dekoCart.find(i => String(i.product.id) === String(id));
+  if (existing) {
+    dekoRelease(id, existing.qty);
+    existing.qty = qty; existing.delivery_date = date; existing.note = note;
+  } else {
+    dekoCart.push({ product: p, qty, delivery_date: date, note });
+  }
+  dekoReserve(id, qty);
+  const cardQtyEl = document.getElementById('dkqty-' + id);
+  if (cardQtyEl) cardQtyEl.textContent = qty;
+  if (p.price) {
+    const tot = document.getElementById('dktotal-' + id);
+    if (tot) tot.textContent = '€ ' + (parseFloat(p.price) * qty).toFixed(2);
+  }
+  closeProductModal();
+  updateCartBtn();
+  showToast(`${p.name} im Warenkorb reserviert ✓`);
+}
+
+// ══════════════════════════════════════════
+// RESERVIERUNGEN
+// ══════════════════════════════════════════
+function dekoReserve(id, qty) {
+  const prev = dekoReservations[id] ? dekoReservations[id].qty : 0;
+  dekoReservations[id] = { qty: prev + qty, expiresAt: Date.now() + 30 * 60 * 1000 };
+  scheduleDekoExpiry(id);
+  updateDekoStock(id);
+}
+
+function dekoRelease(id, qty) {
+  if (!dekoReservations[id]) return;
+  dekoReservations[id].qty -= qty;
+  if (dekoReservations[id].qty <= 0) delete dekoReservations[id];
+  updateDekoStock(id);
+}
+
+function scheduleDekoExpiry(id) {
+  setTimeout(() => {
+    if (dekoReservations[id] && Date.now() >= dekoReservations[id].expiresAt) {
+      const qty = dekoReservations[id].qty;
+      delete dekoReservations[id];
+      // Aus Warenkorb entfernen
+      dekoCart = dekoCart.filter(i => String(i.product.id) !== String(id));
+      updateCartBtn();
+      updateDekoStock(id);
+      renderProdGrid();
+      showToast('⏰ Reservierung abgelaufen — Artikel wieder verfügbar');
+    }
+  }, 30 * 60 * 1000);
+}
+
+function dekoGetAvailable(p) {
+  if (p.stock == null) return null; // unbegrenzt
+  const reserved = dekoReservations[p.id] ? dekoReservations[p.id].qty : 0;
+  return Math.max(0, p.stock - reserved);
+}
+
+function updateDekoStock(id) {
+  const p = dekoProducts.find(x => String(x.id) === String(id));
+  if (!p || p.stock == null) return;
+  const avail = dekoGetAvailable(p);
+  const el = document.getElementById('dkstock-' + id);
+  if (el) el.textContent = avail + ' Stk verfügbar';
+}
+
+// ══════════════════════════════════════════
+// CART
+// ══════════════════════════════════════════
+function updateCartBtn(animate) {
+  const count = dekoCart.reduce((s,i) => s + i.qty, 0);
+  const el = document.getElementById('cartCountDeko');
+  const btn = document.getElementById('cartBtnDeko');
+  const prev = parseInt(el?.textContent) || 0;
+  if (count > 0) {
+    el.textContent = count;
+    el.style.display = 'flex';
+  } else {
+    el.style.display = 'none';
+  }
+  if (animate && count > prev) {
+    if (btn) {
+      btn.classList.remove('cart-pulse'); void btn.offsetWidth; btn.classList.add('cart-pulse');
+      btn.addEventListener('animationend', () => btn.classList.remove('cart-pulse'), {once:true});
+    }
+    if (el && count > 0) {
+      el.classList.remove('badge-pop'); void el.offsetWidth; el.classList.add('badge-pop');
+      el.addEventListener('animationend', () => el.classList.remove('badge-pop'), {once:true});
+    }
+  }
+}
+
+function openCart() {
+  const content = document.getElementById('cartContent');
+  if (dekoCart.length === 0) {
+    content.innerHTML = '<div class="cart-empty">🌿 Dein Warenkorb ist leer.</div>';
+  } else {
+    const itemsHtml = dekoCart.map((item, idx) => `
+      <div class="cart-item">
+        ${item.product.imgData ? `<img class="cart-item-img" src="${item.product.imgData}">` : `<div class="cart-item-img" style="display:flex;align-items:center;justify-content:center;font-size:1.4rem;">🌿</div>`}
+        <div class="cart-item-info">
+          <div class="cart-item-name">${escHtml(item.product.name)} × ${item.qty}</div>
+          ${item.delivery_date ? `<div style="font-size:0.75rem;color:var(--text-muted);margin-top:3px;">📅 ${item.delivery_date}</div>` : ''}
+          ${item.note ? `<div style="font-size:0.75rem;color:var(--rose);margin-top:5px;font-style:italic;padding:4px 8px;background:#fdf0eb;border-radius:6px;">💬 ${escHtml(item.note)}</div>` : ''}
+          ${item.product.price ? `<div class="cart-item-price" style="margin-top:4px;">€ ${(parseFloat(item.product.price) * item.qty * getUnitQty(item.product.unit)).toFixed(2)}<span style="font-size:0.68rem;color:var(--text-muted);margin-left:4px;">(${item.qty}× · ${item.product.unit ? '1× '+escHtml(item.product.unit)+' · ' : ''}€ ${parseFloat(item.product.price).toFixed(2)})</span></div>` : ''}
+        </div>
+        <button class="cart-item-remove" onclick="removeFromCart(${idx})">✕</button>
+      </div>`).join('');
+    const total = dekoCart.reduce((s,i) => s + (i.product.price ? parseFloat(i.product.price) * i.qty * getUnitQty(i.product.unit) : 0), 0);
+    content.innerHTML = itemsHtml +
+      (total > 0 ? `<div style="text-align:right;font-size:0.88rem;font-weight:500;padding:10px 0;">Gesamt: € ${total.toFixed(2)}</div>` : '') +
+      `<div style="display:flex;align-items:center;gap:10px;margin-bottom:14px;padding:12px 14px;background:var(--cream);border-radius:12px;border:1.5px solid var(--border);">
+        <input type="checkbox" id="emailConfirmCheck" ${currentUser.email ? 'checked' : 'disabled'}
+          style="width:18px;height:18px;accent-color:var(--green);cursor:pointer;flex-shrink:0;">
+        <label for="emailConfirmCheck" style="font-size:0.82rem;color:var(--dark);cursor:pointer;line-height:1.3;">
+          Bestellbestätigung per Mail erhalten
+          ${currentUser.email ? `<div style="font-size:0.7rem;color:var(--text-muted);margin-top:2px;">${escHtml(currentUser.email)}</div>` : '<div style="font-size:0.7rem;color:var(--rose);margin-top:2px;">Keine Email hinterlegt</div>'}
+        </label>
+      </div>
+      <button class="btn-order" onclick="placeOrder()">✓ Bestellung aufgeben</button>`;
+  }
+  document.getElementById('cartModal').classList.add('open');
+}
+
+function closeCart() {
+  document.getElementById('cartModal').classList.remove('open');
+}
+
+function updateCartDate(idx, val) { if (dekoCart[idx]) dekoCart[idx].delivery_date = val; }
+function updateCartNote(idx, val) { if (dekoCart[idx]) dekoCart[idx].note = val; }
+
+function removeFromCart(idx) {
+  const item = dekoCart[idx];
+  if (!item) return;
+  // Reservierung freigeben + Kartenanzeige zurücksetzen
+  dekoRelease(item.product.id, item.qty);
+  const qtyEl = document.getElementById('dkqty-' + item.product.id);
+  if (qtyEl) qtyEl.textContent = 0;
+  const totEl = document.getElementById('dktotal-' + item.product.id);
+  if (totEl) totEl.textContent = '';
+  delete _dekoNotePending[item.product.id];
+  dekoCart.splice(idx, 1);
+  updateCartBtn();
+  openCart();
+}
+
+function launchConfetti() {
+  const colors = ['#4A7C28','#C17B5C','#E8A98A','#fdd835','#e53935','#1e88e5'];
+  for (let i = 0; i < 38; i++) {
+    const el = document.createElement('div');
+    el.className = 'confetti-piece';
+    el.style.cssText = `
+      left: ${Math.random()*100}vw;
+      top: -10px;
+      background: ${colors[Math.floor(Math.random()*colors.length)]};
+      width: ${5+Math.random()*7}px;
+      height: ${5+Math.random()*7}px;
+      animation-duration: ${0.9+Math.random()*1.2}s;
+      animation-delay: ${Math.random()*0.4}s;
+      border-radius: ${Math.random()>0.5?'50%':'2px'};
+    `;
+    document.body.appendChild(el);
+    el.addEventListener('animationend', () => el.remove());
+  }
+}
+
+async function sendMail(to, toName, orderDetails) {
+  try {
+    const result = await emailjs.send(EMAILJS_SERVICE, EMAILJS_TEMPLATE, {
+      to_email: to,
+      to_name: toName,
+      order_details: orderDetails,
+    });
+    console.log('EmailJS OK:', result.status);
+    return result;
+  } catch(e) {
+    console.error('EmailJS Fehler:', e);
+  }
+}
+
+function buildOrderText(username, items, dates) {
+  const lines = items.map(i => {
+    const gesamt = i.price ? '€ ' + (parseFloat(i.price) * i.qty).toFixed(2) : '';
+    const einzeln = i.price ? '(€ ' + parseFloat(i.price).toFixed(2) + ' / Stk)' : '';
+    let line = `• ${i.product_name || ''} × ${i.qty} ${einzeln} ${gesamt}`;
+    if (i.note) line += `\n  Bemerkung: ${i.note}`;
+    if (i.delivery_date) line += `\n  Lieferdatum: ${i.delivery_date}`;
+    return line;
+  });
+  const total = items.reduce((s,i) => s + parseFloat(i.price||0)*i.qty, 0);
+  return [
+    `Bestellübersicht:`,
+    `─────────────────`,
+    ...lines,
+    `─────────────────`,
+    total > 0 ? `Gesamt: € ${total.toFixed(2)}` : '',
+    ``,
+    `Bei Fragen einfach auf diese Mail antworten.`
+  ].filter(Boolean).join('\n');
+}
+
+
+async function showDekoHistory() {
+  const modal = document.getElementById('dekoHistoryModal');
+  modal.classList.add('open');
+  document.getElementById('dekoHistoryContent').innerHTML = '<div style="text-align:center;padding:40px 0;color:var(--text-muted);">⏳ Wird geladen...</div>';
+  try {
+    const res = await fetch(`${SUPABASE_URL}/rest/v1/deko_orders?select=*&order=created_at.desc`, {
+      headers: { 'apikey': SUPABASE_ANON_KEY, 'Authorization': 'Bearer ' + SUPABASE_ANON_KEY }
+    });
+    const orders = await res.json();
+    const mine = Array.isArray(orders) ? orders.filter(o => o.username === currentUser.username) : [];
+    window._dekoHistory = mine.map(o => ({
+      ...o,
+      items: typeof o.items === 'string' ? JSON.parse(o.items) : (o.items || [])
+    }));
+    renderDekoHistoryList();
+  } catch(e) {
+    document.getElementById('dekoHistoryContent').innerHTML = '<div style="text-align:center;color:var(--rose);padding:40px 0;">Fehler beim Laden.</div>';
+  }
+}
+
+function closeDekoHistory() {
+  document.getElementById('dekoHistoryModal').classList.remove('open');
+}
+
+function renderDekoHistoryList() {
+  const header = document.getElementById('dekoHistoryHeader');
+  const content = document.getElementById('dekoHistoryContent');
+  header.innerHTML = `
+    <h3 style="font-family:'Playfair Display',serif;font-size:1.15rem;margin:0;">📋 Meine Bestellungen</h3>
+    <button onclick="closeDekoHistory()" style="background:none;border:none;font-size:1.3rem;cursor:pointer;color:var(--text-muted);">✕</button>`;
+  const history = window._dekoHistory || [];
+  if (history.length === 0) {
+    content.innerHTML = '<div style="text-align:center;color:var(--text-muted);padding:40px 0;">Noch keine Bestellungen vorhanden.</div>';
+    return;
+  }
+  content.innerHTML = history.map((order, i) => {
+    const items = order.items || [];
+    const total = items.reduce((s,it) => s + parseFloat(it.price||0) * (it.qty||0) * getUnitQty(it.unit), 0);
+    const dateStr = order.created_at ? order.created_at.slice(0,16).replace('T',' ') : (order.delivery_date || '—');
+    return `
+      <div style="border:1px solid var(--border);border-radius:12px;padding:14px 18px;margin-bottom:10px;display:flex;justify-content:space-between;align-items:center;background:#fff;cursor:pointer;"
+        onclick="renderDekoHistoryDetail(${i})"
+        onmouseover="this.style.background='var(--cream)'" onmouseout="this.style.background='#fff'">
+        <div>
+          <div style="font-weight:600;font-size:0.92rem;margin-bottom:2px;">📅 ${escHtml(dateStr)}</div>
+          <div style="font-size:0.78rem;color:var(--text-muted);">${items.length} Artikel</div>
+        </div>
+        <div style="text-align:right;">
+          ${total > 0 ? `<div style="font-size:1rem;font-weight:700;color:var(--rose);">€ ${total.toFixed(2)}</div>` : ''}
+          <div style="font-size:0.75rem;color:var(--text-muted);margin-top:2px;">Details →</div>
+        </div>
+      </div>`;
+  }).join('');
+}
+
+function renderDekoHistoryDetail(idx) {
+  const order = (window._dekoHistory || [])[idx];
+  if (!order) return;
+  const header = document.getElementById('dekoHistoryHeader');
+  const content = document.getElementById('dekoHistoryContent');
+  const items = order.items || [];
+  const total = items.reduce((s,it) => s + parseFloat(it.price||0) * (it.qty||0) * getUnitQty(it.unit), 0);
+  const dateStr = order.created_at ? order.created_at.slice(0,16).replace('T',' ') : (order.delivery_date || '—');
+  header.innerHTML = `
+    <div style="display:flex;align-items:center;gap:10px;">
+      <button onclick="renderDekoHistoryList()" style="background:none;border:1px solid var(--border);border-radius:8px;padding:5px 12px;cursor:pointer;font-family:'DM Sans',sans-serif;font-size:0.82rem;color:var(--dark);">← Zurück</button>
+      <h3 style="font-family:'Playfair Display',serif;font-size:1rem;margin:0;">📅 ${escHtml(dateStr)}</h3>
+    </div>
+    <button onclick="closeDekoHistory()" style="background:none;border:none;font-size:1.3rem;cursor:pointer;color:var(--text-muted);">✕</button>`;
+  content.innerHTML = `
+    <div style="margin-bottom:16px;">
+      ${items.map(it => {
+        const lineTotal = parseFloat(it.price||0) * (it.qty||0) * getUnitQty(it.unit);
+        return `
+        <div style="display:flex;justify-content:space-between;align-items:baseline;padding:10px 0;border-bottom:1px solid var(--border);">
+          <div>
+            <div style="font-size:0.88rem;font-weight:600;color:var(--dark);">${escHtml(it.product_name||'')} × ${it.qty||0}</div>
+            <div style="font-size:0.75rem;color:var(--text-muted);margin-top:2px;">${it.unit ? '1× '+escHtml(it.unit)+' · ' : ''}€ ${parseFloat(it.price||0).toFixed(2)} / Stk</div>
+            ${it.note ? `<div style="font-size:0.75rem;color:var(--rose);font-style:italic;margin-top:2px;">💬 ${escHtml(it.note)}</div>` : ''}
+            ${it.delivery_date ? `<div style="font-size:0.72rem;color:var(--text-muted);">📅 ${escHtml(it.delivery_date)}</div>` : ''}
+          </div>
+          ${lineTotal > 0 ? `<div style="color:var(--rose);font-weight:700;font-size:0.95rem;white-space:nowrap;margin-left:12px;">€ ${lineTotal.toFixed(2)}</div>` : ''}
+        </div>`}).join('')}
+      <div style="display:flex;justify-content:space-between;padding:12px 0;font-weight:700;font-size:0.95rem;border-top:2px solid var(--dark);margin-top:4px;">
+        <span>Gesamt</span>
+        ${total > 0 ? `<span style="color:var(--rose);">€ ${total.toFixed(2)}</span>` : '<span>—</span>'}
+      </div>
+    </div>`;
+}
+
+async function placeOrder() {
+  if (dekoCart.length === 0) return;
+  const globalDate = document.getElementById('globalDeliveryDate')?.value;
+  if (!globalDate) {
+    showToast('Bitte zuerst ein Lieferdatum wählen');
+    closeCart();
+    document.getElementById('globalDeliveryDate')?.focus();
+    return;
+  }
+  dekoCart.forEach(i => { if (!i.delivery_date) i.delivery_date = globalDate; });
+  const _orderSendMail = document.getElementById('emailConfirmCheck')?.checked;
+  closeCart();
+  showLoading('Bestellung wird aufgegeben...');
+  try {
+    const items = dekoCart.map(i => ({
+      product_id: i.product.id,
+      product_name: i.product.name,
+      qty: i.qty,
+      delivery_date: i.delivery_date,
+      note: i.note || null,
+      price: i.product.price || null,
+    }));
+    await sbInsert('deko_orders', {
+      username: currentUser.username,
+      items: JSON.stringify(items),
+      created_at: new Date().toISOString(),
+    });
+    hideLoading();
+    const dates = [...new Set(dekoCart.map(i => i.delivery_date))].join(', ');
+    document.getElementById('confirmText').textContent = `Deine Bestellung wurde erfolgreich übermittelt. Lieferdatum: ${dates}`;
+    // Mail senden
+    const orderText = buildOrderText(currentUser.username, items, dates.split(', '));
+    // Admin-Kopie immer
+    sendMail(ADMIN_EMAIL, 'Admin FM Wien', `Neue Bestellung von ${currentUser.username}\n\n${orderText}`);
+    // Kundenmail wenn Checkbox aktiv
+    if (_orderSendMail && currentUser.email) {
+      sendMail(currentUser.email, currentUser.username, orderText);
+    }
+    dekoCart = [];
+    updateCartBtn();
+    showScreen('confirmScreen');
+    setTimeout(launchConfetti, 200);
+  } catch(e) {
+    hideLoading();
+    showToast('Fehler beim Bestellen — bitte nochmal versuchen');
+  }
+}
+
+function doLogout() {
+  currentUser = null;
+  dekoCart = [];
+  dekoReservations = {};
+  activeCategory = null;
+  updateCartBtn();
+  // Felder nur leeren wenn kein Auto-Login gespeichert
+  const saved = localStorage.getItem('dkSavedLogin');
+  if (!saved) {
+    document.getElementById('loginUser').value = '';
+    document.getElementById('loginPass').value = '';
+  }
+  document.getElementById('loginError').style.display = 'none';
+  document.getElementById('appScreen').style.display = 'none';
+  document.getElementById('confirmScreen').style.display = 'none';
+  document.getElementById('cartBtnDeko').style.display = 'none';
+  document.getElementById('historyBtnDeko').style.display = 'none';
+  document.getElementById('loginScreen').style.display = 'flex';
+}
+
+function backToShop() {
+  showScreen('appScreen');
+  showCatScreen();
+}
+
+// ══════════════════════════════════════════
+// ADMIN — PRODUKTE
+// ══════════════════════════════════════════
+function showAdminDashboard() {
+  document.getElementById('adminScreen').style.display = 'none';
+  document.getElementById('adminDashboard').style.display = 'block';
+  const el = document.getElementById('dashOrderCount');
+  if (el) el.textContent = dkOrders.length + ' Bestellung' + (dkOrders.length !== 1 ? 'en' : '');
+}
+
+function openAdminTab(tab) {
+  document.getElementById('adminDashboard').style.display = 'none';
+  document.getElementById('adminScreen').style.display = 'block';
+  document.getElementById('adminTabBar').style.display = '';
+  switchAdminTab(tab);
+}
+
+function switchAdminTab(tab) {
+  document.querySelectorAll('.admin-tab').forEach(t => t.classList.remove('active'));
+  document.querySelectorAll('.admin-tab-content').forEach(t => t.classList.remove('active'));
+  const idx = tab === 'produkte' ? 0 : tab === 'bestellungen' ? 1 : 2;
+  document.querySelectorAll('.admin-tab')[idx].classList.add('active');
+  document.getElementById('admin' + tab.charAt(0).toUpperCase() + tab.slice(1)).classList.add('active');
+  if (tab === 'einstellungen') { renderDekoCodes(); renderDekoCatList(); }
+  if (tab === 'bestellungen') { loadOrders(); }
+  if (tab === 'produkte') { renderAdminProducts(); }
+}
+
+function renderAdminProducts() {
+  const el = document.getElementById('adminProdList');
+  const q = (document.getElementById('dkProdSearch')?.value || '').toLowerCase();
+  const prods = q ? dekoProducts.filter(p => p.name.toLowerCase().includes(q)) : dekoProducts;
+  if (dekoProducts.length === 0) {
+    el.innerHTML = '<div style="text-align:center;padding:24px;color:var(--text-muted);font-size:0.88rem;">Noch keine Produkte. Bilder hochladen!</div>';
+    return;
+  }
+  if (prods.length === 0) {
+    el.innerHTML = '<div style="text-align:center;padding:24px;color:var(--text-muted);font-size:0.88rem;">Kein Artikel gefunden.</div>';
+    return;
+  }
+  el.innerHTML = prods.map(p => `
+    <div class="admin-prod-card" id="dpcard-${p.id}">
+      ${p.imgData ? `<img class="admin-prod-img" src="${p.imgData}">` : `<div class="admin-prod-placeholder">🌿</div>`}
+      <div class="admin-prod-body">
+        <button onclick="replaceDekoImg('${p.id}')" style="width:100%;padding:7px;background:none;border:1px solid var(--border);border-radius:8px;font-size:0.78rem;cursor:pointer;margin-bottom:8px;font-family:'DM Sans',sans-serif;color:var(--text-muted);">📷 Bild ändern</button>
+        <input class="admin-input" type="text" placeholder="Produktname" value="${escHtml(p.name)}"
+          oninput="updateDekoLocal('${p.id}','name',this.value)">
+        <select class="admin-input" onchange="updateDekoLocal('${p.id}','category',this.value)">
+          <option value="">— Kategorie wählen —</option>
+          ${CATEGORIES.map(c => `<option value="${c.id}" ${p.category===c.id?'selected':''}>${c.name}</option>`).join('')}
+        </select>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:10px;">
+          <div>
+            <div style="font-size:0.68rem;text-transform:uppercase;letter-spacing:1px;color:var(--text-muted);margin-bottom:4px;padding-left:2px;">Preis (€)</div>
+            <input class="admin-input" type="number" placeholder="0.00" value="${p.price||''}" step="0.01"
+              oninput="updateDekoLocal('${p.id}','price',this.value)" style="margin-bottom:0;">
+          </div>
+          <div>
+            <div style="font-size:0.68rem;text-transform:uppercase;letter-spacing:1px;color:var(--text-muted);margin-bottom:4px;padding-left:2px;">Verfügbare Stück</div>
+            <input class="admin-input" type="number" placeholder="0" value="${p.stock??''}" min="0"
+              oninput="updateDekoLocal('${p.id}','stock',this.value===''?null:+this.value)" style="margin-bottom:0;">
+          </div>
+        </div>
+        <div>
+          <div style="font-size:0.68rem;text-transform:uppercase;letter-spacing:1px;color:var(--text-muted);margin-bottom:4px;padding-left:2px;">Einheit (z.B. 1 Stk, 5m, 10 Stiele)</div>
+          <input class="admin-input" type="text" placeholder="z.B. 1 Stk" value="${escHtml(p.unit||'')}"
+            oninput="updateDekoLocal('${p.id}','unit',this.value)">
+        </div>
+        <textarea class="admin-input" placeholder="Beschreibung / Anmerkung" rows="2"
+          oninput="updateDekoLocal('${p.id}','notes',this.value)"
+          style="resize:none;height:60px;">${escHtml(p.notes||'')}</textarea>
+        <div style="display:flex;gap:6px;margin-bottom:8px;">
+          <button onclick="moveDekoProduct('${p.id}','up')"
+            style="flex:1;padding:7px;background:none;border:1px solid var(--border);border-radius:8px;cursor:pointer;font-size:0.9rem;">↑</button>
+          <button onclick="moveDekoProduct('${p.id}','down')"
+            style="flex:1;padding:7px;background:none;border:1px solid var(--border);border-radius:8px;cursor:pointer;font-size:0.9rem;">↓</button>
+          <button onclick="toggleDekoActive('${p.id}')"
+            style="flex:2;padding:7px;background:${p.active?'none':'var(--green)'};border:1px solid ${p.active?'var(--rose)':'var(--green)'};border-radius:8px;cursor:pointer;font-size:0.78rem;font-family:'DM Sans',sans-serif;color:${p.active?'var(--rose)':'#fff'};">
+            ${p.active ? '⏸ Inaktiv' : '▶ Aktiv'}</button>
+        </div>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:4px;">
+          <button class="btn-save" onclick="saveDekoProduct('${p.id}')" style="margin-bottom:0;">✓ Speichern</button>
+          <button onclick="duplicateDekoProduct('${p.id}')" style="padding:10px;background:none;border:1px solid var(--border);border-radius:10px;cursor:pointer;font-family:'DM Sans',sans-serif;font-size:0.82rem;color:var(--text-muted);-webkit-tap-highlight-color:transparent;">📋 Kopieren</button>
+        </div>
+        <button class="btn-danger" onclick="deleteDekoProduct('${p.id}')" style="margin-top:10px;">✕ Löschen</button>
+      </div>
+    </div>`).join('');
+}
+
+function updateDekoLocal(id, key, val) {
+  const p = dekoProducts.find(x => String(x.id) === String(id));
+  if (p) p[key] = val;
+}
+
+async function saveDekoProduct(id) {
+  const p = dekoProducts.find(x => String(x.id) === String(id));
+  if (!p) return;
+  showLoading('Speichern...');
+  try {
+    await sbUpdate('deko_products', 'id=eq.' + id, {
+      name: p.name, category: p.category, price: p.price || null,
+      notes: p.notes || null, img_data: p.imgData, active: p.active,
+      unit: p.unit || null, stock: p.stock ?? null, sort_order: p.sort_order,
+    });
+    hideLoading();
+    showToast('Gespeichert ✓');
+  } catch(e) { hideLoading(); showToast('Fehler beim Speichern'); }
+}
+
+async function toggleDekoActive(id) {
+  const p = dekoProducts.find(x => String(x.id) === String(id));
+  if (!p) return;
+  p.active = !p.active;
+  await sbUpdate('deko_products', 'id=eq.' + id, { active: p.active });
+  renderAdminProducts();
+  showToast(p.active ? 'Aktiviert ✓' : 'Deaktiviert ✓');
+}
+
+async function duplicateDekoProduct(id) {
+  const src = dekoProducts.find(x => String(x.id) === String(id));
+  if (!src) return;
+  showToast('Wird kopiert...');
+  try {
+    const res = await sbInsert('deko_products', {
+      name: src.name + ' (Kopie)',
+      img_data: src.imgData || null,
+      price: src.price || null,
+      notes: src.notes || null,
+      category: src.category || null,
+      unit: src.unit || null,
+      stock: src.stock ?? null,
+      active: true,
+      sort_order: 0
+    });
+    if (res && res[0]) {
+      const copy = {
+        id: res[0].id, name: res[0].name, imgData: src.imgData,
+        price: src.price, notes: src.notes, category: src.category,
+        unit: src.unit, stock: src.stock, active: true, sort_order: 0
+      };
+      dekoProducts.unshift(copy);
+      renderAdminProducts();
+      showToast('Kopie erstellt ✓');
+    }
+  } catch(e) { showToast('Fehler beim Kopieren'); }
+}
+
+async function deleteDekoProduct(id) {
+  if (!confirm('Produkt wirklich löschen?')) return;
+  showLoading('Löschen...');
+  try {
+    await sbDelete('deko_products', 'id=eq.' + id);
+    dekoProducts = dekoProducts.filter(p => String(p.id) !== String(id));
+    hideLoading();
+    renderAdminProducts();
+    showToast('Gelöscht ✓');
+  } catch(e) { hideLoading(); showToast('Fehler'); }
+}
+
+async function moveDekoProduct(id, dir) {
+  const sorted = [...dekoProducts].sort((a,b) => (a.sort_order??9999)-(b.sort_order??9999));
+  sorted.forEach((p,i) => p.sort_order = i);
+  const idx = sorted.findIndex(p => String(p.id) === String(id));
+  if (dir === 'up' && idx <= 0) return;
+  if (dir === 'down' && idx >= sorted.length - 1) return;
+  const swapIdx = dir === 'up' ? idx - 1 : idx + 1;
+  const a = sorted[idx], b = sorted[swapIdx];
+  const tmp = a.sort_order; a.sort_order = b.sort_order; b.sort_order = tmp;
+  await sbUpdate('deko_products', 'id=eq.' + a.id, { sort_order: a.sort_order });
+  await sbUpdate('deko_products', 'id=eq.' + b.id, { sort_order: b.sort_order });
+  dekoProducts = dekoProducts.map(p => {
+    if (String(p.id) === String(a.id)) return {...p, sort_order: a.sort_order};
+    if (String(p.id) === String(b.id)) return {...p, sort_order: b.sort_order};
+    return p;
+  }).sort((a,b) => (a.sort_order??9999)-(b.sort_order??9999));
+  renderAdminProducts();
+  showToast('Reihenfolge geändert ✓');
+}
+
+// ── Image Upload ──────────────────────────
+function handleDekoFiles(files) {
+  Array.from(files).forEach(file => {
+    if (!file.type.startsWith('image/')) return;
+    const reader = new FileReader();
+    reader.onload = ev => {
+      dkOpenCropEditor(ev.target.result, async (croppedData) => {
+        showLoading('Bild wird gespeichert...');
+        const product = {
+          id: null,
+          name: file.name.replace(/\.[^.]+$/, '').replace(/[-_]/g, ' '),
+          imgData: croppedData,
+          price: null, notes: null, category: null, active: true, sort_order: dekoProducts.length
+        };
+        try {
+          const saved = await sbInsert('deko_products', {
+            name: product.name, img_data: croppedData,
+            active: true, unit: null, stock: null, sort_order: 0,
+          });
+          product.id = saved[0]?.id || saved.id;
+          if (product.id) dekoProducts.unshift(product);
+        } catch(e) { hideLoading(); showToast('Fehler beim Hochladen'); return; }
+        hideLoading();
+        renderAdminProducts();
+        showToast('Produkt hinzugefügt ✓');
+      });
+    };
+    reader.readAsDataURL(file);
+  });
+}
+
+function replaceDekoImg(id) {
+  let inp = document.getElementById('dekoReplaceInput');
+  if (!inp) {
+    inp = document.createElement('input');
+    inp.type = 'file'; inp.accept = 'image/*';
+    inp.id = 'dekoReplaceInput';
+    inp.style.cssText = 'position:fixed;top:-999px;left:-999px;opacity:0;';
+    document.body.appendChild(inp);
+  }
+  inp.value = '';
+  inp.onchange = e => {
+    const file = e.target.files[0]; if (!file) return;
+    const reader = new FileReader();
+    reader.onload = ev => {
+      dkOpenCropEditor(ev.target.result, async croppedData => {
+        const p = dekoProducts.find(x => String(x.id) === String(id));
+        if (!p) return;
+        p.imgData = croppedData;
+        showLoading('Bild wird gespeichert...');
+        try {
+          await sbUpdate('deko_products', 'id=eq.' + id, { img_data: croppedData });
+        } catch(e) { hideLoading(); return; }
+        hideLoading();
+        renderAdminProducts();
+        showToast('Bild ersetzt ✓');
+      });
+    };
+    reader.readAsDataURL(file);
+  };
+  inp.click();
+}
+
+// ── Drag & Drop ───────────────────────────
+const dz = document.getElementById('dekoFileInput').parentElement.querySelector('.drop-zone');
+const dekoDropZone = document.getElementById('dekoDropZone');
+if (dekoDropZone) {
+  dekoDropZone.addEventListener('dragover', e => { e.preventDefault(); dekoDropZone.style.borderColor='var(--green)'; });
+  dekoDropZone.addEventListener('dragleave', () => { dekoDropZone.style.borderColor=''; });
+  dekoDropZone.addEventListener('drop', e => {
+    e.preventDefault();
+    dekoDropZone.style.borderColor='';
+    handleDekoFiles(e.dataTransfer.files);
+  });
+}
+
+// ══════════════════════════════════════════
+// ADMIN — BESTELLUNGEN
+// ══════════════════════════════════════════
+let dkOrders = []; // gecachte Bestellungen
+
+async function loadOrders() {
+  window._dkView = window._dkView || 'all';
+  document.getElementById('dkStatsRow').innerHTML = '<div style="color:var(--text-muted);font-size:0.82rem;padding:8px 0;">Laden...</div>';
+  try {
+    const raw = await sbSelect('deko_orders', 'select=*&order=created_at.desc');
+    dkOrders = raw.map(o => ({
+      ...o,
+      items: (() => { try { return JSON.parse(o.items || '[]'); } catch(e) { return []; } })()
+    }));
+    dkRenderOrders();
+  } catch(e) {
+    document.getElementById('dkStatsRow').innerHTML = '<div style="color:#c44;font-size:0.82rem;">Fehler beim Laden.</div>';
+  }
+}
+
+function dkSetView(view) {
+  window._dkView = view;
+  ['All','Customer','Product','Date'].forEach(v => {
+    const btn = document.getElementById('dkVBtn' + v);
+    if (btn) { btn.classList.toggle('active', v.toLowerCase() === view); }
+  });
+  document.getElementById('dkOrdersAll').style.display = view === 'all' ? '' : 'none';
+  document.getElementById('dkOrdersCustomer').style.display = view === 'customer' ? '' : 'none';
+  document.getElementById('dkOrdersProduct').style.display = view === 'product' ? '' : 'none';
+  document.getElementById('dkOrdersDate').style.display = view === 'date' ? '' : 'none';
+  dkRenderOrders();
+}
+
+function dkRenderOrders() {
+  const q = (document.getElementById('dkOrderSearch')?.value || '').toLowerCase();
+  const filtered = q
+    ? dkOrders.filter(o => o.username.toLowerCase().includes(q) || o.items.some(i => (i.product_name||'').toLowerCase().includes(q)))
+    : dkOrders;
+
+  // Stats
+  const totalOrders = filtered.length;
+  const totalItems = filtered.reduce((s,o) => s + o.items.reduce((ss,i) => ss + (i.qty||0), 0), 0);
+  const totalRevenue = filtered.reduce((s,o) => s + o.items.reduce((ss,i) => ss + (parseFloat(i.price||0) * (i.qty||0)), 0), 0);
+  const customers = new Set(filtered.map(o => o.username)).size;
+  document.getElementById('dkStatsRow').innerHTML = `
+    <div class="dk-stat-card"><div class="dk-stat-val">${totalOrders}</div><div class="dk-stat-lbl">Bestellungen</div></div>
+    <div class="dk-stat-card"><div class="dk-stat-val">${totalItems}</div><div class="dk-stat-lbl">Artikel</div></div>
+    <div class="dk-stat-card"><div class="dk-stat-val">${customers}</div><div class="dk-stat-lbl">Kunden</div></div>
+    <div class="dk-stat-card"><div class="dk-stat-val" style="color:var(--rose);font-size:${totalRevenue>=1000?'1.1rem':'1.3rem'}">${totalRevenue > 0 ? '€ '+totalRevenue.toFixed(2) : '—'}</div><div class="dk-stat-lbl">Umsatz</div></div>
+  `;
+
+  const view = window._dkView || 'all';
+  if (view === 'all') dkRenderAll(filtered);
+  else if (view === 'customer') dkRenderByCustomer(filtered);
+  else if (view === 'product') dkRenderByProduct(filtered);
+  else if (view === 'date') dkRenderByDate(filtered);
+}
+
+function dkRenderAll(orders) {
+  const el = document.getElementById('dkOrdersAll');
+  if (orders.length === 0) { el.innerHTML = '<div style="text-align:center;padding:30px;color:var(--text-muted);">Noch keine Bestellungen.</div>'; return; }
+  el.innerHTML = orders.map(o => {
+    const created = o.created_at ? new Date(o.created_at).toLocaleString('de-AT',{day:'2-digit',month:'2-digit',hour:'2-digit',minute:'2-digit'}) : '';
+    const orderTotal = o.items.reduce((s,i) => s + parseFloat(i.price||0)*(i.qty||0), 0);
+    const deliveryDates = [...new Set(o.items.map(i=>i.delivery_date).filter(Boolean))];
+    return `<div class="order-card" id="dkorder-${o.id}">
+      <div class="order-header">
+        <div>
+          <div class="order-user">👤 ${escHtml(o.username)}</div>
+          <div class="order-date">${created}</div>
+        </div>
+        <div style="display:flex;align-items:flex-start;gap:10px;">
+          <div style="text-align:right">
+            ${deliveryDates.map(d=>`<div style="font-size:0.75rem;color:var(--rose);font-weight:500">📅 ${d}</div>`).join('')}
+            ${orderTotal>0?`<div style="font-size:0.85rem;color:var(--rose);font-weight:700;margin-top:2px">€ ${orderTotal.toFixed(2)}</div>`:''}
+          </div>
+          <button onclick="dkDeleteOrder('${o.id}')" title="Bestellung löschen"
+            style="background:none;border:none;color:#c44;font-size:1.1rem;cursor:pointer;padding:0 2px;line-height:1;-webkit-tap-highlight-color:transparent;">✕</button>
+        </div>
+      </div>
+      ${o.items.map(i => `
+        <div class="order-item">
+          <div style="display:flex;justify-content:space-between;align-items:baseline;gap:8px;">
+            <span style="font-weight:500;flex:1">${escHtml(i.product_name||'')}</span>
+            <span style="color:var(--green);font-weight:600;white-space:nowrap">× ${i.qty||0}</span>
+            <span style="color:var(--rose);white-space:nowrap;min-width:56px;text-align:right">${i.price?(parseFloat(i.price)*(i.qty||0)).toFixed(2)+' €':'—'}</span>
+          </div>
+          ${i.note?`<div style="font-size:0.72rem;color:var(--text-muted);margin-top:2px">💬 ${escHtml(i.note)}</div>`:''}
+        </div>`).join('')}
+    </div>`;
+  }).join('');
+}
+
+function dkRenderByCustomer(orders) {
+  const el = document.getElementById('dkOrdersCustomer');
+  if (orders.length === 0) { el.innerHTML = '<div style="text-align:center;padding:30px;color:var(--text-muted);">Noch keine Bestellungen.</div>'; return; }
+  const byCustomer = {};
+  orders.forEach(o => {
+    if (!byCustomer[o.username]) byCustomer[o.username] = { items: [], totalQty: 0, totalPrice: 0 };
+    o.items.forEach(i => {
+      byCustomer[o.username].items.push(i);
+      byCustomer[o.username].totalQty += i.qty || 0;
+      byCustomer[o.username].totalPrice += parseFloat(i.price||0) * (i.qty||0);
+    });
+  });
+  el.innerHTML = Object.entries(byCustomer).sort((a,b) => b[1].totalQty - a[1].totalQty).map(([customer, data]) => {
+    // Merge same articles
+    const merged = {};
+    data.items.forEach(i => {
+      if (!merged[i.product_name]) merged[i.product_name] = { qty: 0, price: 0, notes: [] };
+      merged[i.product_name].qty += i.qty || 0;
+      merged[i.product_name].price += parseFloat(i.price||0) * (i.qty||0);
+      if (i.note) merged[i.product_name].notes.push(i.note);
+    });
+    const rows = Object.entries(merged).sort((a,b) => a[0].localeCompare(b[0])).map(([name,d]) =>
+      `<tr><td style="padding:8px 10px;border-bottom:1px solid #f0ebe5">
+        ${escHtml(name)}
+        ${d.notes.length ? `<div style="font-size:0.72rem;color:var(--rose);font-style:italic;margin-top:3px;">💬 ${escHtml(d.notes.join(' · '))}</div>` : ''}
+       </td>
+       <td style="padding:8px 6px;text-align:center;border-bottom:1px solid #f0ebe5;color:var(--green);font-weight:600">${d.qty}</td>
+       <td style="padding:8px 6px;text-align:right;border-bottom:1px solid #f0ebe5;color:var(--rose)">${d.price>0?'€ '+d.price.toFixed(2):'—'}</td></tr>`
+    ).join('');
+    return `<div class="order-card">
+      <div class="order-header">
+        <div class="order-user">👤 ${escHtml(customer)}</div>
+        <div style="display:flex;gap:12px;font-size:0.82rem">
+          <span style="color:var(--green);font-weight:600">${data.totalQty} Stk</span>
+          ${data.totalPrice>0?`<span style="color:var(--rose);font-weight:700">€ ${data.totalPrice.toFixed(2)}</span>`:''}
+        </div>
+      </div>
+      <table style="width:100%;border-collapse:collapse;font-size:0.83rem">
+        <thead><tr style="border-bottom:1px solid var(--border)">
+          <th style="padding:6px 10px;text-align:left;font-size:0.7rem;text-transform:uppercase;letter-spacing:1px;color:var(--text-muted)">Artikel</th>
+          <th style="padding:6px 6px;text-align:center;font-size:0.7rem;text-transform:uppercase;letter-spacing:1px;color:var(--text-muted)">Menge</th>
+          <th style="padding:6px 6px;text-align:right;font-size:0.7rem;text-transform:uppercase;letter-spacing:1px;color:var(--text-muted)">Preis</th>
+        </tr></thead>
+        <tbody>${rows}</tbody>
+      </table>
+    </div>`;
+  }).join('');
+}
+
+function dkRenderByProduct(orders) {
+  const el = document.getElementById('dkOrdersProduct');
+  if (orders.length === 0) { el.innerHTML = '<div style="text-align:center;padding:30px;color:var(--text-muted);">Noch keine Bestellungen.</div>'; return; }
+  const byProduct = {};
+  orders.forEach(o => {
+    o.items.forEach(i => {
+      if (!byProduct[i.product_name]) byProduct[i.product_name] = { customers: {}, totalQty: 0, totalPrice: 0 };
+      const p = byProduct[i.product_name];
+      if (!p.customers[o.username]) p.customers[o.username] = { qty: 0, price: 0 };
+      p.customers[o.username].qty += i.qty || 0;
+      p.customers[o.username].price += parseFloat(i.price||0) * (i.qty||0);
+      p.totalQty += i.qty || 0;
+      p.totalPrice += parseFloat(i.price||0) * (i.qty||0);
+    });
+  });
+  el.innerHTML = Object.entries(byProduct).sort((a,b) => b[1].totalQty - a[1].totalQty).map(([name, data], idx) => {
+    const id = 'dkprod_' + idx;
+    const rows = Object.entries(data.customers).sort((a,b) => b[1].qty - a[1].qty).map(([customer, d]) =>
+      `<tr><td style="padding:8px 10px;border-bottom:1px solid #f0ebe5">👤 ${escHtml(customer)}</td>
+       <td style="padding:8px 6px;text-align:center;border-bottom:1px solid #f0ebe5;color:var(--green);font-weight:600">${d.qty}</td>
+       <td style="padding:8px 6px;text-align:right;border-bottom:1px solid #f0ebe5;color:var(--rose)">${d.price>0?'€ '+d.price.toFixed(2):'—'}</td></tr>`
+    ).join('');
+    return `<div class="order-card">
+      <div class="order-header" onclick="dkToggleRollup('${id}')" style="cursor:pointer">
+        <div style="display:flex;align-items:center;gap:8px">
+          <span id="dkarrow-${id}" style="font-size:0.7rem;color:var(--text-muted)">▶</span>
+          <div class="order-user">🌿 ${escHtml(name)}</div>
+        </div>
+        <div style="display:flex;gap:12px;font-size:0.82rem">
+          <span style="color:var(--text-muted)">${Object.keys(data.customers).length} Kunden</span>
+          <span style="color:var(--green);font-weight:600">${data.totalQty} Stk</span>
+          ${data.totalPrice>0?`<span style="color:var(--rose);font-weight:700">€ ${data.totalPrice.toFixed(2)}</span>`:''}
+        </div>
+      </div>
+      <div id="dkrollup-${id}" style="display:none">
+        <table style="width:100%;border-collapse:collapse;font-size:0.83rem">
+          <thead><tr style="border-bottom:1px solid var(--border)">
+            <th style="padding:6px 10px;text-align:left;font-size:0.7rem;text-transform:uppercase;letter-spacing:1px;color:var(--text-muted)">Kunde</th>
+            <th style="padding:6px 6px;text-align:center;font-size:0.7rem;text-transform:uppercase;letter-spacing:1px;color:var(--text-muted)">Menge</th>
+            <th style="padding:6px 6px;text-align:right;font-size:0.7rem;text-transform:uppercase;letter-spacing:1px;color:var(--text-muted)">Preis</th>
+          </tr></thead>
+          <tbody>${rows}</tbody>
+        </table>
+      </div>
+    </div>`;
+  }).join('');
+}
+
+function dkToggleRollup(id) {
+  const body = document.getElementById('dkrollup-' + id);
+  const arrow = document.getElementById('dkarrow-' + id);
+  if (!body) return;
+  const open = body.style.display !== 'none';
+  body.style.display = open ? 'none' : '';
+  if (arrow) arrow.textContent = open ? '▶' : '▼';
+}
+
+function dkRenderByDate(orders) {
+  const el = document.getElementById('dkOrdersDate');
+  if (orders.length === 0) { el.innerHTML = '<div style="text-align:center;padding:30px;color:var(--text-muted);">Noch keine Bestellungen.</div>'; return; }
+  const byDate = {};
+  orders.forEach(o => {
+    o.items.forEach(i => {
+      const d = i.delivery_date || 'Kein Datum';
+      if (!byDate[d]) byDate[d] = [];
+      byDate[d].push({ ...i, customer: o.username });
+    });
+  });
+  el.innerHTML = Object.entries(byDate).sort((a,b) => a[0].localeCompare(b[0])).map(([date, items]) => {
+    const totalQty = items.reduce((s,i) => s+(i.qty||0), 0);
+    const totalPrice = items.reduce((s,i) => s+parseFloat(i.price||0)*(i.qty||0), 0);
+    const rows = items.sort((a,b) => a.product_name.localeCompare(b.product_name)).map(i =>
+      `<tr><td style="padding:8px 10px;border-bottom:1px solid #f0ebe5">${escHtml(i.product_name||'')}</td>
+       <td style="padding:8px 6px;border-bottom:1px solid #f0ebe5;color:var(--text-muted);font-size:0.8rem">${escHtml(i.customer)}</td>
+       <td style="padding:8px 6px;text-align:center;border-bottom:1px solid #f0ebe5;color:var(--green);font-weight:600">${i.qty||0}</td>
+       <td style="padding:8px 6px;text-align:right;border-bottom:1px solid #f0ebe5;color:var(--rose)">${i.price?(parseFloat(i.price)*(i.qty||0)).toFixed(2)+' €':'—'}</td></tr>`
+    ).join('');
+    return `<div class="order-card">
+      <div class="order-header">
+        <div class="order-user">📅 ${escHtml(date)}</div>
+        <div style="display:flex;gap:12px;font-size:0.82rem">
+          <span style="color:var(--green);font-weight:600">${totalQty} Stk</span>
+          ${totalPrice>0?`<span style="color:var(--rose);font-weight:700">€ ${totalPrice.toFixed(2)}</span>`:''}
+        </div>
+      </div>
+      <table style="width:100%;border-collapse:collapse;font-size:0.83rem">
+        <thead><tr style="border-bottom:1px solid var(--border)">
+          <th style="padding:6px 10px;text-align:left;font-size:0.7rem;text-transform:uppercase;letter-spacing:1px;color:var(--text-muted)">Artikel</th>
+          <th style="padding:6px 6px;text-align:left;font-size:0.7rem;text-transform:uppercase;letter-spacing:1px;color:var(--text-muted)">Kunde</th>
+          <th style="padding:6px 6px;text-align:center;font-size:0.7rem;text-transform:uppercase;letter-spacing:1px;color:var(--text-muted)">Menge</th>
+          <th style="padding:6px 6px;text-align:right;font-size:0.7rem;text-transform:uppercase;letter-spacing:1px;color:var(--text-muted)">Preis</th>
+        </tr></thead>
+        <tbody>${rows}</tbody>
+      </table>
+    </div>`;
+  }).join('');
+}
+
+async function dkDeleteOrder(id) {
+  if (!confirm('Diese Bestellung wirklich löschen?')) return;
+  try {
+    await fetch(SUPABASE_URL + '/rest/v1/deko_orders?id=eq.' + id, {
+      method: 'DELETE', headers: { apikey: SUPABASE_ANON_KEY, Authorization: 'Bearer ' + SUPABASE_ANON_KEY }
+    });
+    dkOrders = dkOrders.filter(o => o.id !== id);
+    dkRenderOrders();
+    showToast('Bestellung gelöscht ✓');
+  } catch(e) { showToast('Fehler beim Löschen'); }
+}
+
+function dkShowClearConfirm() {
+  document.getElementById('dkClearConfirm').style.display = '';
+}
+
+async function dkClearOrders() {
+  document.getElementById('dkClearConfirm').style.display = 'none';
+  try {
+    await fetch(SUPABASE_URL + '/rest/v1/deko_orders?id=neq.00000000-0000-0000-0000-000000000000', {
+      method: 'DELETE', headers: { apikey: SUPABASE_ANON_KEY, Authorization: 'Bearer ' + SUPABASE_ANON_KEY }
+    });
+    dkOrders = [];
+    dkRenderOrders();
+    showToast('Bestellliste geleert ✓');
+  } catch(e) { showToast('Fehler beim Löschen'); }
+}
+
+function dkExportCSV() {
+  if (dkOrders.length === 0) { showToast('Keine Bestellungen vorhanden'); return; }
+  const byCustomer = {}; const productSet = {};
+  dkOrders.forEach(o => {
+    o.items.forEach(i => {
+      if (!byCustomer[o.username]) byCustomer[o.username] = {};
+      byCustomer[o.username][i.product_name] = (byCustomer[o.username][i.product_name]||0) + (i.qty||0);
+      productSet[i.product_name] = true;
+    });
+  });
+  const products = Object.keys(productSet).sort();
+  const customers = Object.keys(byCustomer).sort();
+  const esc = v => '"' + String(v).replace(/"/g,'""') + '"';
+  const header = [esc('Kunde'), ...products.map(esc)].join(';');
+  const rows = customers.map(c => [esc(c), ...products.map(p => esc(byCustomer[c][p]||0))].join(';'));
+  const totals = [esc('GESAMT'), ...products.map(p => esc(customers.reduce((s,c)=>s+(byCustomer[c][p]||0),0)))].join(';');
+  const csv = [header, ...rows, totals].join('\n');
+  const blob = new Blob(['\uFEFF'+csv], {type:'text/csv;charset=utf-8;'});
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement('a');
+  a.href = url; a.download = 'FM_Deko_' + new Date().toLocaleDateString('de-DE').replace(/\./g,'-') + '.csv';
+  a.click(); URL.revokeObjectURL(url);
+  showToast('CSV exportiert ✓');
+}
+
+function dkPrintOrders() {
+  if (dkOrders.length === 0) { showToast('Keine Bestellungen vorhanden'); return; }
+  const now = new Date().toLocaleDateString('de-AT');
+  const byProduct = {}; const byCustomer = {};
+  dkOrders.forEach(o => {
+    o.items.forEach(i => {
+      if (!byProduct[i.product_name]) byProduct[i.product_name] = { qty:0, price:0, customers:new Set() };
+      byProduct[i.product_name].qty += i.qty||0;
+      byProduct[i.product_name].price += parseFloat(i.price||0)*(i.qty||0);
+      byProduct[i.product_name].customers.add(o.username);
+      if (!byCustomer[o.username]) byCustomer[o.username] = [];
+      byCustomer[o.username].push({ ...i });
+    });
+  });
+  const part1 = Object.entries(byProduct).sort((a,b)=>a[0].localeCompare(b[0]))
+    .map(([name,d]) => `<tr>
+      <td class="td-name">${escHtml(name)}</td>
+      <td class="td-green">${d.qty}</td>
+      <td class="td-muted">${d.customers.size}</td>
+      <td class="td-price">${d.price>0?'€ '+d.price.toFixed(2):'—'}</td>
+    </tr>`).join('');
+  const part2 = Object.entries(byCustomer).sort((a,b)=>a[0].localeCompare(b[0])).map(([customer,items]) => {
+    const merged = {};
+    items.forEach(i => { if(!merged[i.product_name])merged[i.product_name]={qty:0,unitPrice:parseFloat(i.price||0),price:0,notes:[]}; merged[i.product_name].qty+=i.qty||0; merged[i.product_name].price+=parseFloat(i.price||0)*(i.qty||0); if(i.note)merged[i.product_name].notes.push(i.note); });
+    const rows = Object.entries(merged).sort((a,b)=>a[0].localeCompare(b[0]))
+      .map(([name,d]) => `<tr>
+        <td class="td-name">${escHtml(name)}${d.notes.length?`<div style="font-size:11px;color:#c17b5c;font-style:italic;margin-top:3px;">💬 ${escHtml(d.notes.join(' · '))}</div>`:''}</td>
+        <td class="td-green">${d.qty}</td>
+        <td class="td-muted">${d.unitPrice>0?'€ '+d.unitPrice.toFixed(2):'—'}</td>
+        <td class="td-price td-bold">${d.price>0?'€ '+d.price.toFixed(2):'—'}</td>
+      </tr>`).join('');
+    const total = items.reduce((s,i)=>s+parseFloat(i.price||0)*(i.qty||0),0);
+    return `<div class="customer-block">
+      <div class="customer-header">
+        <div class="customer-name">👤 ${escHtml(customer)}</div>
+        ${total>0?`<div class="customer-total">€ ${total.toFixed(2)}</div>`:''}
+      </div>
+      <table><thead><tr><th>Artikel</th><th>Menge</th><th>Einzelpreis</th><th>Gesamt</th></tr></thead><tbody>${rows}</tbody></table>
+      ${total>0?`<div class="subtotal-row"><span>Summe: € ${total.toFixed(2)}</span></div>`:''}
+    </div>`;
+  }).join('');
+  const win = window.open('','_blank');
+  win.document.write(`<!DOCTYPE html><html><head><meta charset="utf-8"><title>FM Deko – ${now}</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&display=swap');
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: 'DM Sans', sans-serif; font-size: 13px; color: #1a1412; background: #fff; padding: 32px 40px; }
+    .doc-header { border-bottom: 2px solid #1a1412; padding-bottom: 16px; margin-bottom: 28px; display: flex; justify-content: space-between; align-items: flex-end; }
+    .doc-title { font-size: 22px; font-weight: 700; letter-spacing: -0.5px; }
+    .doc-date { font-size: 12px; color: #888; }
+    .section-title { font-size: 11px; text-transform: uppercase; letter-spacing: 2px; color: #888; font-weight: 600; margin-bottom: 10px; margin-top: 32px; }
+    table { width: 100%; border-collapse: collapse; margin-bottom: 8px; }
+    th { font-size: 10px; text-transform: uppercase; letter-spacing: 1.2px; color: #aaa; font-weight: 600; padding: 8px 10px; border-bottom: 1.5px solid #e8e0d8; text-align: left; }
+    th:not(:first-child) { text-align: right; }
+    td { padding: 10px 10px; border-bottom: 1px solid #f0ebe5; font-size: 13px; }
+    td:not(:first-child) { text-align: right; }
+    .customer-block { margin-bottom: 32px; page-break-inside: avoid; }
+    .customer-header { display: flex; justify-content: space-between; align-items: center; background: #f5ede3; border-radius: 8px; padding: 10px 14px; margin-bottom: 2px; }
+    .customer-name { font-weight: 700; font-size: 14px; }
+    .customer-total { font-size: 14px; font-weight: 700; color: #c17b5c; }
+    .subtotal-row { display: flex; justify-content: flex-end; padding: 10px 10px 0; border-top: 1.5px solid #e8e0d8; margin-top: 2px; }
+    .subtotal-row span { font-size: 13px; font-weight: 700; }
+    .td-name { font-weight: 500; color: #1a1412; }
+    .td-muted { color: #888; font-size: 12px; }
+    .td-green { color: #2d5016; font-weight: 600; }
+    .td-price { color: #c17b5c; font-weight: 600; }
+    .td-bold { font-weight: 700; }
+    @media print { .customer-block { page-break-inside: avoid; } body { padding: 20px 28px; } }
+  </style></head><body>
+
+  <div class="doc-header">
+    <div>
+      <div class="doc-title">FM Deko</div>
+      <div style="font-size:13px;color:#888;margin-top:4px;">Bestellliste</div>
+    </div>
+    <div class="doc-date">${now}</div>
+  </div>
+
+  <div class="section-title">Teil 1 — Artikel gesamt</div>
+  <table>
+    <thead><tr><th>Artikel</th><th>Menge</th><th>Kunden</th><th>Preis gesamt</th></tr></thead>
+    <tbody>${part1}</tbody>
+    <tfoot><tr><td colspan="3" style="padding:10px;font-weight:600;border-top:1.5px solid #1a1412;">Gesamt</td>
+      <td style="padding:10px;font-weight:700;color:#c17b5c;border-top:1.5px solid #1a1412;text-align:right">€ ${Object.values(byProduct).reduce((s,d)=>s+d.price,0).toFixed(2)}</td></tr></tfoot>
+  </table>
+
+  <div class="section-title" style="margin-top:40px;">Teil 2 — Pro Kunde</div>
+  ${part2}
+
+  </body></html>`);
+  win.document.close();
+  win.print();
+}
+
+// ══════════════════════════════════════════
+// EINSTELLUNGEN
+// ══════════════════════════════════════════
+function renderDekoCatList() {
+  const el = document.getElementById('dekoCatList');
+  if (!el) return;
+  if (CATEGORIES.length === 0) {
+    el.innerHTML = '<div style="font-size:0.82rem;color:var(--text-muted);">Noch keine Gruppen.</div>';
+    return;
+  }
+  el.innerHTML = CATEGORIES.map((c, i) => `
+    <div style="display:flex;align-items:center;gap:8px;padding:8px 0;border-bottom:1px solid var(--border);">
+      <span style="flex:1;font-size:0.88rem;">${escHtml(c.name)}</span>
+      <button onclick="moveDekoCategory(${i},'up')" ${i===0?'disabled':''} style="background:none;border:1px solid var(--border);border-radius:6px;padding:2px 7px;cursor:pointer;color:${i===0?'#ccc':'var(--dark)'};">↑</button>
+      <button onclick="moveDekoCategory(${i},'down')" ${i===CATEGORIES.length-1?'disabled':''} style="background:none;border:1px solid var(--border);border-radius:6px;padding:2px 7px;cursor:pointer;color:${i===CATEGORIES.length-1?'#ccc':'var(--dark)'};">↓</button>
+      <button onclick="removeDekoCategory(${i})" style="background:none;border:none;color:#c44;cursor:pointer;font-size:0.85rem;padding:0 4px;">✕</button>
+    </div>`).join('');
+}
+async function saveDekoCategories() {
+  try {
+    const existing = await sbSelect('deko_settings', 'key=eq.config&select=value');
+    const cfg = existing[0]?.value ? JSON.parse(existing[0].value) : {};
+    cfg.categories = CATEGORIES;
+    if (existing[0]) {
+      await sbUpdate('deko_settings', 'key=eq.config', { value: JSON.stringify(cfg) });
+    } else {
+      await sbInsert('deko_settings', { key: 'config', value: JSON.stringify(cfg) });
+    }
+  } catch(e) { showToast('Fehler beim Speichern'); }
+}
+async function addDekoCategory() {
+  const name = document.getElementById('dekoNewCatName').value.trim();
+  if (!name) { showToast('Bitte Name eingeben'); return; }
+  const id = name.toLowerCase().replace(/[^a-z0-9]/g, '_') + '_' + Date.now();
+  CATEGORIES.push({ id, name });
+  document.getElementById('dekoNewCatName').value = '';
+  renderDekoCatList();
+  await saveDekoCategories();
+  showToast('Gruppe hinzugefügt ✓');
+}
+async function removeDekoCategory(idx) {
+  const cat = CATEGORIES[idx];
+  if (!confirm(`Gruppe "${cat.name}" wirklich löschen?`)) return;
+  CATEGORIES.splice(idx, 1);
+  renderDekoCatList();
+  await saveDekoCategories();
+  showToast('Gruppe entfernt ✓');
+}
+async function moveDekoCategory(idx, dir) {
+  if (dir==='up' && idx===0) return;
+  if (dir==='down' && idx===CATEGORIES.length-1) return;
+  const swap = dir==='up' ? idx-1 : idx+1;
+  [CATEGORIES[idx], CATEGORIES[swap]] = [CATEGORIES[swap], CATEGORIES[idx]];
+  renderDekoCatList();
+  await saveDekoCategories();
+}
+
+async function changeDekoPass() {
+  const p1 = document.getElementById('dekoNewPass1').value.trim();
+  const p2 = document.getElementById('dekoNewPass2').value.trim();
+  const msg = document.getElementById('dekoPassMsg');
+  msg.style.display = 'block';
+  if (!p1) { msg.style.color='#c44'; msg.textContent='Bitte Passwort eingeben.'; return; }
+  if (p1 !== p2) { msg.style.color='#c44'; msg.textContent='Passwörter stimmen nicht überein.'; return; }
+  try {
+    // In eigener deko_settings Tabelle speichern — NICHT die Presale settings!
+    await sbInsert('deko_settings', { key: 'config', value: JSON.stringify({ masterPass: p1 }) });
+  } catch(e) {
+    // Falls schon vorhanden: update
+    try {
+      await sbUpdate('deko_settings', 'key=eq.config', { value: JSON.stringify({ masterPass: p1 }) });
+    } catch(e2) { msg.style.color='#c44'; msg.textContent='Fehler beim Speichern.'; return; }
+  }
+  MASTER_PASS = p1;
+  msg.style.color = 'var(--green)';
+  msg.textContent = 'Passwort gespeichert ✓';
+  document.getElementById('dekoNewPass1').value = '';
+  document.getElementById('dekoNewPass2').value = '';
+}
+
+let _dekoCodes = [];
+
+async function renderDekoCodes() {
+  const el = document.getElementById('dekoCodesList');
+  el.innerHTML = '<div style="font-size:0.82rem;color:var(--text-muted);">Laden...</div>';
+  try {
+    const codes = await sbSelect('codes', 'select=*&order=username');
+    _dekoCodes = codes.filter(c => c.username !== MASTER_USER);
+    renderDekoCodesList();
+  } catch(e) {
+    el.innerHTML = '<div style="font-size:0.82rem;color:#c44;">Fehler beim Laden.</div>';
+  }
+}
+
+function renderDekoCodesList() {
+  const el = document.getElementById('dekoCodesList');
+  const q = (document.getElementById('dekoCodesSearch')?.value || '').toLowerCase();
+  const filtered = _dekoCodes.filter(c =>
+    c.username.toLowerCase().includes(q) || (c.email||'').toLowerCase().includes(q)
+  );
+  if (filtered.length === 0) {
+    el.innerHTML = '<div style="text-align:center;padding:20px;color:var(--text-muted);font-size:0.85rem;">' + (q ? 'Keine Treffer.' : 'Noch keine Codes.') + '</div>';
+    return;
+  }
+  el.innerHTML = filtered.map(c => `
+    <div style="background:${c.inactive?'#f5f5f5':'#fff'};border:1px solid var(--border);border-radius:14px;padding:14px;margin-bottom:10px;opacity:${c.inactive?'0.7':'1'};">
+      <div style="font-weight:700;font-size:1rem;margin-bottom:10px;">${escHtml(c.username)}${c.inactive?' <em style="font-size:0.72rem;color:#999;font-weight:400;">(inaktiv)</em>':''}</div>
+      <div style="display:flex;align-items:center;gap:8px;margin-bottom:8px;">
+        <span style="font-size:0.78rem;color:var(--text-muted);width:28px;">🔑</span>
+        <input id="dkcp-${escHtml(c.username)}" value="${escHtml(c.password)}"
+          style="flex:1;padding:7px 10px;border:1px solid var(--border);border-radius:8px;font-family:monospace;font-size:0.88rem;outline:none;"
+          onfocus="this.style.borderColor='var(--green)'" onblur="this.style.borderColor='var(--border)'">
+        <button onclick="removeDekoCode('${escHtml(c.username)}')"
+          style="padding:6px 12px;background:transparent;color:#c44;border:1px solid #c44;border-radius:8px;font-size:0.8rem;cursor:pointer;white-space:nowrap;">🗑</button>
+      </div>
+      <div style="display:flex;align-items:center;gap:8px;margin-bottom:10px;">
+        <span style="font-size:0.78rem;color:var(--text-muted);width:28px;">✉</span>
+        <input id="dkce-${escHtml(c.username)}" value="${c.email?escHtml(c.email):''}" placeholder="E-Mail (optional)"
+          style="flex:1;padding:7px 10px;border:1px solid var(--border);border-radius:8px;font-family:'DM Sans',sans-serif;font-size:0.88rem;outline:none;"
+          onfocus="this.style.borderColor='var(--green)'" onblur="this.style.borderColor='var(--border)'">
+      </div>
+      <div style="display:flex;justify-content:space-between;gap:8px;">
+        <button onclick="toggleDekoCode('${escHtml(c.username)}',${!!c.inactive})"
+          style="padding:7px 14px;background:${c.inactive?'var(--green)':'transparent'};color:${c.inactive?'#fff':'var(--text-muted)'};border:1px solid ${c.inactive?'var(--green)':'var(--border)'};border-radius:8px;font-family:'DM Sans',sans-serif;font-size:0.82rem;cursor:pointer;">
+          ${c.inactive?'▶ Aktivieren':'⏸ Inaktiv'}</button>
+        <button onclick="saveDekoCodeEdits('${escHtml(c.username)}')"
+          style="padding:7px 18px;background:var(--green);color:#fff;border:none;border-radius:8px;font-family:'DM Sans',sans-serif;font-size:0.85rem;font-weight:600;cursor:pointer;">
+          💾 Speichern</button>
+      </div>
+    </div>`).join('');
+}
+
+async function addDekoCode() {
+  const u = document.getElementById('dekoNewUser').value.trim();
+  const p = document.getElementById('dekoNewUserPass').value.trim();
+  const email = document.getElementById('dekoNewUserEmail').value.trim();
+  if (!u || !p) { showToast('Name und Code eingeben!'); return; }
+  if (_dekoCodes.find(c => c.username === u)) { showToast('Kundenname bereits vergeben!'); return; }
+  showLoading('Wird gespeichert...');
+  try {
+    await sbInsert('codes', { username: u, password: p, email: email || null, role: 'customer' });
+    document.getElementById('dekoNewUser').value = '';
+    document.getElementById('dekoNewUserPass').value = '';
+    document.getElementById('dekoNewUserEmail').value = '';
+    hideLoading();
+    await renderDekoCodes();
+    showToast('Code hinzugefügt ✓');
+  } catch(e) { hideLoading(); showToast('Fehler — Benutzername bereits vorhanden?'); }
+}
+
+async function saveDekoCodeEdits(username) {
+  const newPass = document.getElementById('dkcp-' + username)?.value.trim();
+  const newEmail = document.getElementById('dkce-' + username)?.value.trim();
+  if (!newPass) { showToast('Passwort darf nicht leer sein'); return; }
+  showLoading('Speichern...');
+  try {
+    await sbUpdate('codes', `username=eq.${encodeURIComponent(username)}`, { password: newPass, email: newEmail || null });
+    const c = _dekoCodes.find(x => x.username === username);
+    if (c) { c.password = newPass; c.email = newEmail || null; }
+    hideLoading();
+    showToast('Gespeichert ✓');
+  } catch(e) { hideLoading(); showToast('Fehler beim Speichern'); }
+}
+
+async function toggleDekoCode(username, isInactive) {
+  await sbUpdate('codes', `username=eq.${encodeURIComponent(username)}`, { inactive: !isInactive });
+  const c = _dekoCodes.find(x => x.username === username);
+  if (c) c.inactive = !isInactive;
+  renderDekoCodesList();
+  showToast(isInactive ? 'Aktiviert ✓' : 'Deaktiviert ✓');
+}
+
+async function removeDekoCode(username) {
+  if (!confirm(`Code "${username}" wirklich löschen?`)) return;
+  showLoading('Löschen...');
+  try {
+    await sbDelete('codes', `username=eq.${encodeURIComponent(username)}`);
+    _dekoCodes = _dekoCodes.filter(c => c.username !== username);
+    hideLoading();
+    renderDekoCodesList();
+    showToast('Code gelöscht ✓');
+  } catch(e) { hideLoading(); showToast('Fehler'); }
+}
+
+// ══════════════════════════════════════════
+// CROP EDITOR
+// ══════════════════════════════════════════
+let dkCrop = { imgSrc:'', onConfirm:null, dragging:false, x:0, y:0, zoom:1, naturalW:0, naturalH:0, frameW:0, frameH:0, startX:0, startY:0, imgStartX:0, imgStartY:0 };
+
+function dkOpenCropEditor(imgSrc, onConfirm) {
+  dkCrop.imgSrc = imgSrc; dkCrop.onConfirm = onConfirm; dkCrop.dragging = false;
+  const img = document.getElementById('dekocrImg');
+  img.src = imgSrc;
+  img.onload = () => {
+    dkCrop.naturalW = img.naturalWidth; dkCrop.naturalH = img.naturalHeight;
+    const frame = document.getElementById('dekoCropFrame');
+    dkCrop.frameW = frame.offsetWidth; dkCrop.frameH = frame.offsetHeight;
+    const scaleW = dkCrop.frameW / dkCrop.naturalW;
+    const scaleH = dkCrop.frameH / dkCrop.naturalH;
+    const fitZoom = Math.max(scaleW, scaleH);
+    dkCrop.zoom = fitZoom; dkCrop.x = 0; dkCrop.y = 0;
+    const slider = document.getElementById('dekoCropZoom');
+    slider.min = (fitZoom*0.3).toFixed(3); slider.max = (fitZoom*5).toFixed(3);
+    slider.step = (fitZoom*0.02).toFixed(3); slider.value = fitZoom;
+    document.getElementById('dekoCropZoomVal').textContent = Math.round(fitZoom*100)+'%';
+    dkCropClamp(); dkCropApply();
+  };
+  document.getElementById('dekoCropModal').classList.add('open');
+}
+function dkCropApply() {
+  const img = document.getElementById('dekocrImg');
+  img.style.width = (dkCrop.naturalW*dkCrop.zoom)+'px';
+  img.style.height = (dkCrop.naturalH*dkCrop.zoom)+'px';
+  img.style.left = dkCrop.x+'px'; img.style.top = dkCrop.y+'px';
+}
+function dkCropClamp() {
+  const iw = dkCrop.naturalW*dkCrop.zoom, ih = dkCrop.naturalH*dkCrop.zoom;
+  if (iw >= dkCrop.frameW) dkCrop.x = Math.min(0, Math.max(dkCrop.frameW-iw, dkCrop.x));
+  else dkCrop.x = (dkCrop.frameW-iw)/2;
+  if (ih >= dkCrop.frameH) dkCrop.y = Math.min(0, Math.max(dkCrop.frameH-ih, dkCrop.y));
+  else dkCrop.y = (dkCrop.frameH-ih)/2;
+}
+function dkCropZoomChange() {
+  const oldZoom = dkCrop.zoom;
+  dkCrop.zoom = parseFloat(document.getElementById('dekoCropZoom').value);
+  document.getElementById('dekoCropZoomVal').textContent = Math.round(dkCrop.zoom*100)+'%';
+  const cx = dkCrop.frameW/2, cy = dkCrop.frameH/2;
+  dkCrop.x = cx-(cx-dkCrop.x)*(dkCrop.zoom/oldZoom);
+  dkCrop.y = cy-(cy-dkCrop.y)*(dkCrop.zoom/oldZoom);
+  dkCropClamp(); dkCropApply();
+}
+function dkCropDragStart(e) {
+  dkCrop.dragging = true;
+  const pt = e.touches ? e.touches[0] : e;
+  dkCrop.startX = pt.clientX; dkCrop.startY = pt.clientY;
+  dkCrop.imgStartX = dkCrop.x; dkCrop.imgStartY = dkCrop.y;
+  e.preventDefault();
+}
+function dkCropDragMove(e) {
+  if (!dkCrop.dragging) return;
+  const pt = e.touches ? e.touches[0] : e;
+  dkCrop.x = dkCrop.imgStartX+(pt.clientX-dkCrop.startX);
+  dkCrop.y = dkCrop.imgStartY+(pt.clientY-dkCrop.startY);
+  dkCropClamp(); dkCropApply(); e.preventDefault();
+}
+function dkCropDragEnd() { dkCrop.dragging = false; }
+function dkCropCancel() { document.getElementById('dekoCropModal').classList.remove('open'); }
+function dkCropConfirm() {
+  const canvas = document.createElement('canvas');
+  const frame = document.getElementById('dekoCropFrame');
+  const scale = window.devicePixelRatio || 1;
+  canvas.width = frame.offsetWidth * scale; canvas.height = frame.offsetHeight * scale;
+  const ctx = canvas.getContext('2d');
+  ctx.scale(scale, scale);
+  const img = document.getElementById('dekocrImg');
+  ctx.drawImage(img, dkCrop.x, dkCrop.y, dkCrop.naturalW*dkCrop.zoom, dkCrop.naturalH*dkCrop.zoom);
+  const croppedData = canvas.toDataURL('image/jpeg', 0.88);
+  document.getElementById('dekoCropModal').classList.remove('open');
+  if (dkCrop.onConfirm) dkCrop.onConfirm(croppedData);
+}
+</script>
+</body>
+</html>
